@@ -19,7 +19,7 @@ namespace BlackJack
                 {
                     for (int v = 0; v < 13; v++)
                     {
-                        deck.Push(new Card { (Suit)s, (CardValue)v });
+                        deck.Push(new Card ( (Suit)s, (CardValue)v ));
                     }
                 }
             }
