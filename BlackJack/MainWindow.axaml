@@ -6,7 +6,7 @@
         x:DataType="AccessText"
         x:Class="BlackJack.MainWindow"
         Title="BlackJack">
-<Grid RowDefinitions="Auto, *, *">
+  <Grid RowDefinitions="Auto, *, *">
     <StackPanel Grid.Row="0" Background="AliceBlue">
       <Button Classes="transparent" HorizontalAlignment="Right" Click="OpenSettings">
         <Label Classes="Icon" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>

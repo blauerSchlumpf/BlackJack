@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Microsoft.VisualBasic;
+using Views;
 
 namespace BlackJack
 {
@@ -15,7 +16,8 @@ namespace BlackJack
 
         private void OpenSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-
+            var settings = new SettingsWindow();
+            settings.Show();
         }
     }
 }
