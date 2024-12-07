@@ -5,5 +5,5 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="BlackJack.MainWindow"
         Title="BlackJack">
-    Welcome to Avalonia!
+	<Label Content="{Binding card.suit}"/>
 </Window>

@@ -8,21 +8,37 @@ namespace BlackJack
 {
     class Deck
     {
-        int deckCount = 6;
-        Stack<Card> deck = new Stack<Card>();
+        int deckCount = 1;
+        List<Card> deck = new List<Card>();
 
-        void NewDeck()
+        public Deck()
         {
-            for (int i = 0; i < deckCount; i++) 
+            for (int i = 0; i < deckCount; i++)
             {
                 for (int s = 0; s < 4; s++)
                 {
                     for (int v = 0; v < 13; v++)
                     {
-                        deck.Push(new Card ( (Suit)s, (CardValue)v ));
+                       // deck.Add(new Card((Suit)s, (CardValue)v));
                     }
                 }
             }
+            Mischen();
+        }
+
+        void Mischen()
+        {
+            List<Card> stack = new List<Card>();
+            var rnd = new Random();
+           deck.OrderBy(x => rnd.Next()).ToList();
+        }
+
+        public Card PickCard()
+        {
+            Card card = deck[0];
+            deck.RemoveAt(0);
+            Console.WriteLine(card.Suit);
+            return card;
         }
     }
 }
