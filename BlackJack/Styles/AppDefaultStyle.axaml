@@ -1,0 +1,36 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <!-- Add Controls for Previewer Here -->
+      <Grid >
+        <Button Classes="transparent" HorizontalAlignment="Right">
+          <Label  Classes="Icon" Foreground="ForestGreen" FontSize="20">&#xe270;</Label>
+        </Button>        
+      </Grid>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Add Styles Here -->
+  <Style Selector="Label.Icon">
+    <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
+  </Style>
+
+  <Style Selector="Button.transparent">
+    <Setter Property="Background" Value="Transparent"></Setter>
+    <Setter Property="Opacity" Value="10"></Setter>
+  </Style>
+
+
+  <Style Selector="Button.transparent:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="Transparent"></Setter>
+  </Style>
+  
+  <Style Selector="Button.transparent Label">
+    <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+  </Style>
+
+  <Style Selector="Button.transparent:pointerover Label">
+    <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+  </Style>
+</Styles>

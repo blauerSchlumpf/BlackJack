@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Microsoft.VisualBasic;
 
 namespace BlackJack
 {
@@ -8,10 +9,13 @@ namespace BlackJack
         public MainWindow()
         {
             InitializeComponent();
+            //string test = "&x#e270;";
+            DataContext = this;
+        }
 
-            var card = deck.PickCard();
-            Suit suit = new Suit();
-            suit.TuEtwas();
+        private void OpenSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+
         }
     }
 }

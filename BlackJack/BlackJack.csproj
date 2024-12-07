@@ -6,7 +6,13 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\Fonts\Phosphor-Duotone.ttf" />
+    <None Remove="Assets\Fonts\Phosphor-Fill.ttf" />
+    <None Remove="Assets\Fonts\Phosphor.ttf" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.2.1" />
@@ -18,5 +24,15 @@
       <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\Fonts\Phosphor-Duotone.ttf" />
+    <AvaloniaResource Include="Assets\Fonts\Phosphor-Fill.ttf" />
+    <AvaloniaResource Include="Assets\Fonts\Phosphor.ttf" />
   </ItemGroup>
 </Project>

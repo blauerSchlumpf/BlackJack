@@ -9,6 +9,7 @@ namespace BlackJack
     class Deck
     {
         int deckCount = 1;
+        int shuffleCount = 5;
         List<Card> deck = new List<Card>();
 
         public Deck()
@@ -17,20 +18,23 @@ namespace BlackJack
             {
                 for (int s = 0; s < 4; s++)
                 {
-                    for (int v = 0; v < 13; v++)
+                    for (int v = 1; v < 14; v++)
                     {
-                       // deck.Add(new Card((Suit)s, (CardValue)v));
+                       deck.Add(new Card(s, v));
                     }
                 }
             }
-            Mischen();
+            Shuffle();
         }
 
-        void Mischen()
+        void Shuffle()
         {
-            List<Card> stack = new List<Card>();
-            var rnd = new Random();
-           deck.OrderBy(x => rnd.Next()).ToList();
+            for (int i = 0; i < shuffleCount; i++)
+            {
+                var rnd = new Random();
+                deck = deck.OrderBy(x => rnd.Next()).ToList();
+            }
+            
         }
 
         public Card PickCard()
