@@ -3,17 +3,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-        x:DataType="AccessText"
         x:Class="BlackJack.MainWindow"
         Title="BlackJack">
   <Grid RowDefinitions="Auto, *, *">
     <StackPanel Grid.Row="0" Background="AliceBlue">
       <Button Classes="transparent" HorizontalAlignment="Right" Click="OpenSettings">
-        <Label Classes="Icon" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>
+        <Label Classes="Icon" Foreground="ForestGreen" FontSize="25"></Label>
       </Button>
     </StackPanel>
     <StackPanel Grid.Row="1" Background="Aqua">
-      <Label HorizontalAlignment="Right" Classes="Icon" ></Label>
+      <Label HorizontalAlignment="Right" Classes="Icon" Content="{Binding}"></Label>
     </StackPanel>
     <StackPanel Grid.Row="2" Background="Bisque">
       <Label HorizontalAlignment="Right" Classes="Icon" Content="&#xeb9a;"></Label>

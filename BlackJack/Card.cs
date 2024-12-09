@@ -10,7 +10,7 @@ namespace BlackJack
     internal class Card
     {
         public string Suit { get; set; }
-        List<string> suits = new List<string>() {"Pik", "Herz", "Karo", "Kreuz"};
+        List<string> suits = new List<string>() {"Pik", "&#xe270;", "Karo", "Kreuz"};
         List<char> Values = new List<char>() {'A', 'B', 'D', 'K'};
         public char Value { get; set; }
         public int Point {get;}

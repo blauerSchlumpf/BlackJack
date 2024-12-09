@@ -10,8 +10,10 @@ namespace BlackJack
         public MainWindow()
         {
             InitializeComponent();
-            //string test = "&x#e270;";
-            DataContext = this;
+            Card card = new Card(1, 2);
+            string test = "&#xe270;";
+            char icon = '\ueb9a';
+            this.DataContext = icon;
         }
 
         private void OpenSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
