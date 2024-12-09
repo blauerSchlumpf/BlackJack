@@ -12,9 +12,9 @@ namespace BlackJack
         public char Suit { get; set; }
         List<char> suits = new List<char>() { '\ue1ec', '\ue2a8', '\ue448', '\ue1ba'};
         // List<string> suits = new List<string>() { "Karo", "Herz", "Pik", "Kreuz" };
-        List<char> Values = new List<char>() {'A', 'B', 'D', 'K'};
+        List<string> Values = new List<string>() {"A", "B", "D", "K"};
         public string Color { get; }
-        public char Value { get; set; }
+        public string Value { get; set; }
         public int Point {get;}
         public Card(int suit, int value)
         {
@@ -30,7 +30,7 @@ namespace BlackJack
             }
             else
             {
-                Value = (char)value;
+                Value = value.ToString();
                 Point = value;
 
             }

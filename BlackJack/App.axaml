@@ -13,7 +13,7 @@
     
     <FontFamily x:Key="Phosphor">Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
     <FontFamily x:Key="PhosphorFill">Assets/Fonts/Phosphor-Fill.ttf#Phosphor-Fill</FontFamily>
-    <FontFamily x:Key="Phosphor-Duotone">Assets/Fonts/Phosphor-Duotone.ttf#Phosphor-Duotone</FontFamily>
+    <FontFamily x:Key="PhosphorDuotone">Assets/Fonts/Phosphor-Duotone.ttf#Phosphor-Duotone</FontFamily>
     
     
   </Application.Resources>

@@ -4,20 +4,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
         xmlns:local="clr-namespace:BlackJack"
+		xmlns:views="clr-namespace:BlackJack.Views"
         x:Class="BlackJack.MainWindow"
         Title="BlackJack">
+	
   <Grid RowDefinitions="Auto, *, *">
     <StackPanel Grid.Row="0" Background="AliceBlue">
       <Button Classes="transparent" HorizontalAlignment="Right" Click="OpenSettings">
-        <Label Classes="Icon" Foreground="ForestGreen" FontSize="25"></Label>
+        <Label Classes="IconFill" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>
       </Button>
-      <Label Classes="IconFill" Content="{Binding Suit}" Foreground="{Binding Color}"></Label>
+		
     </StackPanel>
     <StackPanel Grid.Row="1" Background="Aqua">
-      <Label x:Name="karte" HorizontalAlignment="Right" Height="50" Classes="IconFill" Foreground="{Binding Color}" Content="{Binding Suit}"></Label>
+
+		<Button Background="Green" Click="Button_Click_1"></Button>
     </StackPanel>
     <StackPanel Grid.Row="2" Background="Bisque">
-      <Button Background="Green" Click="Button_Click_1"></Button>
+      
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+			<views:CardView x:Name="CardViewControl"/>
+		</StackPanel>
     </StackPanel>
   </Grid>
 </Window>

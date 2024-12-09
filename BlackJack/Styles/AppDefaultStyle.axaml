@@ -4,7 +4,7 @@
     <Border Padding="20">
       <!-- Add Controls for Previewer Here -->
       <Grid >
-        <Label Classes="Herz"></Label>       
+		  <TextBlock FontFamily="{DynamicResource PhosphorFill}" Text="&#xe1ec;"></TextBlock>
       </Grid>
     </Border>
   </Design.PreviewWith>
