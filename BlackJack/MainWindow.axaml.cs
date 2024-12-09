@@ -9,17 +9,19 @@ namespace BlackJack
         Deck deck = new Deck();
         public MainWindow()
         {
-            InitializeComponent();
-            Card card = new Card(1, 2);
-            string test = "&#xe270;";
-            char icon = '\ueb9a';
-            this.DataContext = icon;
+            InitializeComponent();            
+            this.DataContext = deck.PickCard();
         }
 
         private void OpenSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var settings = new SettingsWindow();
             settings.Show();
+        }
+
+        private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            this.DataContext = deck.PickCard();
         }
     }
 }

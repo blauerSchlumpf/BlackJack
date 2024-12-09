@@ -4,9 +4,7 @@
     <Border Padding="20">
       <!-- Add Controls for Previewer Here -->
       <Grid >
-        <Button Classes="transparent" HorizontalAlignment="Right">
-          <Label  Classes="Icon" Foreground="ForestGreen" FontSize="20">&#xe270;</Label>
-        </Button>        
+        <Label Classes="Herz"></Label>       
       </Grid>
     </Border>
   </Design.PreviewWith>
@@ -16,6 +14,34 @@
     <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
   </Style>
 
+  <Style Selector="Label.IconFill">
+    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
+  </Style>
+
+  <!--<Style Selector="Label.Herz">
+    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
+    <Setter Property="Foreground" Value="Red"></Setter>
+    <Setter Property="Content" Value="&#xe2a8;"></Setter>
+  </Style>
+  
+  <Style Selector="Label.Karo">
+    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
+    <Setter Property="Foreground" Value="Red"></Setter>
+    <Setter Property="Content" Value="&#xe1ec;"></Setter>
+  </Style>
+
+  <Style Selector="Label.Pik">
+    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
+    <Setter Property="Foreground" Value="Black"></Setter>
+    <Setter Property="Content" Value="&#xe448;"></Setter>
+  </Style>
+
+  <Style Selector="Label.Kreuz">
+    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
+    <Setter Property="Foreground" Value="Black"></Setter>
+    <Setter Property="Content" Value="&#xe1ba;"></Setter>
+  </Style>-->
+  
   <Style Selector="Button.transparent">
     <Setter Property="Background" Value="Transparent"></Setter>
     <Setter Property="Opacity" Value="10"></Setter>

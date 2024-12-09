@@ -9,12 +9,14 @@ namespace BlackJack
 {
     internal class Card
     {
-        public string Suit { get; set; }
-        List<string> suits = new List<string>() {"Pik", "&#xe270;", "Karo", "Kreuz"};
+        public char Suit { get; set; }
+        List<char> suits = new List<char>() { '\ue1ec', '\ue2a8', '\ue448', '\ue1ba'};
+        // List<string> suits = new List<string>() { "Karo", "Herz", "Pik", "Kreuz" };
         List<char> Values = new List<char>() {'A', 'B', 'D', 'K'};
+        public string Color { get; }
         public char Value { get; set; }
         public int Point {get;}
-        public Card(int suit, int value) 
+        public Card(int suit, int value)
         {
             if (value == 1)
             {
@@ -26,11 +28,19 @@ namespace BlackJack
                 Value = Values[value - 10];
                 Point = 10;
             }
-            else 
+            else
             {
                 Value = (char)value;
                 Point = value;
 
+            }
+            if(suit < 2)
+            {
+                Color = "Red";
+            }
+            else
+            {
+                Color = "Black";
             }
             Suit = suits[suit];
         }
