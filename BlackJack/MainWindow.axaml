@@ -19,10 +19,11 @@
 
 		<Button Background="Green" Click="Button_Click_1"></Button>
     </StackPanel>
-    <StackPanel Grid.Row="2" Background="Bisque">
-      
-		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-			<views:CardView x:Name="CardViewControl"/>
+    <StackPanel Grid.Row="2" Background="BlueViolet">
+
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
+			<Button Content="Karte ziehen" Click="Button_Click_1" Width="150" Height="40" />
+			<StackPanel x:Name="CardContainer" Orientation="Horizontal" Margin="10" />
 		</StackPanel>
     </StackPanel>
   </Grid>

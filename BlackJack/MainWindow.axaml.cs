@@ -1,7 +1,6 @@
 using Avalonia.Controls;
 using BlackJack.Views;
 using Microsoft.VisualBasic;
-using Views;
 
 namespace BlackJack
 {
@@ -11,8 +10,6 @@ namespace BlackJack
         public MainWindow()
         {
             InitializeComponent();            
-            Card card = deck.PickCard();
-            CardViewControl.SetCardData(card.Value, card.Suit, card.Color);
         }
 
         private void OpenSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -24,7 +21,10 @@ namespace BlackJack
         private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             Card card = deck.PickCard();
-            CardViewControl.SetCardData(card.Value, card.Suit, card.Color);
+            var cardView = new CardView();
+            cardView.SetCardData(card.Value, card.Suit, card.Color);
+
+            CardContainer.Children.Add(cardView);
         }
     }
 }
