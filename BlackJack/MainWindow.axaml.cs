@@ -27,5 +27,9 @@ namespace BlackJack
 
             CardContainer.Children.Add(cardView);
         }
+
+        private void Button_Click_2(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+        }
     }
 }
