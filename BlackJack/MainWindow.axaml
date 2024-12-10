@@ -8,7 +8,7 @@
         x:Class="BlackJack.MainWindow"
         Title="BlackJack">
 	
-  <Grid RowDefinitions="Auto, *, *">
+  <Grid RowDefinitions="Auto, *, Auto, *">
     <StackPanel Grid.Row="0" Background="AliceBlue">
       <Button Classes="transparent" HorizontalAlignment="Right" Click="OpenSettings">
         <Label Classes="IconFill" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>
@@ -17,12 +17,13 @@
     <StackPanel Grid.Row="1" Background="Aqua">
 		  <Button Background="Green" Click="Button_Click_1"></Button>
     </StackPanel>
-    <StackPanel Grid.Row="2" Background="BlueViolet">
-		  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
-        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-          <Button Content="Hit" Click="Button_Click_1" Width="150" Height="40" />
-          <Button Content="Stand" Click="Button_Click_2" Width="150" Height="40" />
+    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+          <Button Content="Hit" Click="Button_Click_1" Width="150" Height="40" Margin="0 0 5 0"/>
+          <Button Content="Stand" Click="Button_Click_2" Width="150" Height="40" Margin="5 0 0 0"/>
         </StackPanel>
+    <StackPanel Grid.Row="3" Background="BlueViolet">
+		  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
+        
 			  <StackPanel x:Name="CardContainer" Orientation="Horizontal" Margin="10" />
 	    </StackPanel>
     </StackPanel>
