@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace BlackJack
 {
     interface IPlayer
-    { 
+    {
         void Hit() { }
 
         void Stand() { }
+
+        int SheetCount() {  return 0; }
     }
 }
