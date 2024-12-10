@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using BlackJack.Views;
 using Microsoft.VisualBasic;
+using Views;
 
 namespace BlackJack
 {
