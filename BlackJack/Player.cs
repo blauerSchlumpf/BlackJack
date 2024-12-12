@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,19 +10,25 @@ namespace BlackJack
     internal class Player : IPlayer
     {
 
-        List<int> sheet = new List<int>();
+        ObservableCollection<Card> sheet = new ObservableCollection<Card>();
         public int Budget { get; set; }
 
         int SheetCount()
         {
+            int index = -1;
             int sum = 0;
-            foreach (int point in sheet)
+            foreach (Card card in sheet)
             {
-                sum += point;
-                if (sum > 21)
+                if (card.Value == "A")
                 {
-                    // var a = sheet.Find(11);
+                    index = sheet.IndexOf(card);
                 }
+                sum += card.Point;
+                
+            }
+            if (sum > 21 && index > -1)
+            {
+                sheet[index].Point = 1;
             }
             return sum;
         }

@@ -26,6 +26,7 @@ namespace BlackJack
             var cardView = new CardView();
             cardView.SetCardData(card.Value, card.Suit, card.Color);
 
+            // Anstelle playersheet observablecollection des Players
             PlayerSheet.Children.Add(cardView);
             points += card.Point;
             DataContext = this;

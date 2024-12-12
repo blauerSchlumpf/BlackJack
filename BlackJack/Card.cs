@@ -14,8 +14,8 @@ namespace BlackJack
         // List<string> suits = new List<string>() { "Karo", "Herz", "Pik", "Kreuz" };
         List<string> Values = new List<string>() {"A", "B", "D", "K"};
         public string Color { get; }
-        public string Value { get; set; }
-        public int Point {get;}
+        public string Value { get; }
+        public int Point { get; set; }
         public Card(int suit, int value)
         {
             if (value == 1)
