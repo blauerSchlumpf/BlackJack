@@ -20,7 +20,7 @@ namespace BlackJack
                 sum += point;
                 if (sum > 21)
                 {
-                    var a = sheet.Find(11);
+                    // var a = sheet.Find(11);
                 }
             }
             return sum;

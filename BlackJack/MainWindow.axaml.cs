@@ -8,6 +8,7 @@ namespace BlackJack
     public partial class MainWindow : Window
     {
         Deck deck = new Deck();
+        int points = 0;
         public MainWindow()
         {
             InitializeComponent();            
@@ -19,16 +20,18 @@ namespace BlackJack
             settings.Show();
         }
 
-        private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private void HitClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             Card card = deck.PickCard();
             var cardView = new CardView();
             cardView.SetCardData(card.Value, card.Suit, card.Color);
 
-            CardContainer.Children.Add(cardView);
+            PlayerSheet.Children.Add(cardView);
+            points += card.Point;
+            DataContext = this;
         }
 
-        private void Button_Click_2(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private void StandClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
         }
     }

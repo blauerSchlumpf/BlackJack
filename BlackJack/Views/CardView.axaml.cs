@@ -13,8 +13,7 @@ namespace BlackJack.Views
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-
-            // Beispiel: Setze Kartendaten (dies wäre normalerweise durch DataBinding gesteuert)
+            //beispiel daten
             SetCardData("A", '\ue1ec', "Red");
         }
 
@@ -30,7 +29,7 @@ namespace BlackJack.Views
             centerSymbol.Text = unicodeSymbol.ToString();
             bottomSymbol.Text = cardDisplay;
 
-            // Setze Farbe basierend auf der Eingabe
+            // Setzt Farbe
             if (color == "Red")
             {
                 topSymbol.Foreground = Avalonia.Media.Brushes.Red;
