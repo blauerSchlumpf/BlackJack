@@ -7,30 +7,30 @@ using System.Threading.Tasks;
 
 namespace BlackJack
 {
-    internal class Player : IPlayer
+    class Player : IPlayer
     {
-
-        ObservableCollection<Card> sheet = new ObservableCollection<Card>();
+        public int sheetCount;
+        public ObservableCollection<Card> Sheet = new ObservableCollection<Card>();
         public int Budget { get; set; }
 
-        int SheetCount()
+        public void SheetCount()
         {
             int index = -1;
             int sum = 0;
-            foreach (Card card in sheet)
+            foreach (Card card in Sheet)
             {
                 if (card.Value == "A")
                 {
-                    index = sheet.IndexOf(card);
+                    index = Sheet.IndexOf(card);
                 }
                 sum += card.Point;
                 
             }
             if (sum > 21 && index > -1)
             {
-                sheet[index].Point = 1;
+                Sheet[index].Point = 1;
             }
-            return sum;
+            sheetCount = sum;
         }
 
     }
