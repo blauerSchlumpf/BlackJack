@@ -16,7 +16,7 @@
     </StackPanel>
     <StackPanel Grid.Row="1" Background="Aqua">
       <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
-		  <ItemsControl ItemsSource="{Binding player.Sheet}">
+		  <ItemsControl ItemsSource="{Binding cards}">
 			  <ItemsControl.ItemTemplate>
 				  <DataTemplate>
 					  <Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" Background="White">
@@ -25,7 +25,7 @@
 							  <Grid RowDefinitions=" Auto, *, Auto" />
 
 							  <!-- Top Symbol -->
-							  <TextBlock x:Name="TopSymbol" Text="{Binding card.Value}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="0" Margin="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" />
+							  <TextBlock x:Name="TopSymbol" Text="{Binding Value}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="0" Margin="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
 							  <!-- Center Symbol -->
 							  <TextBlock x:Name="CenterSymbol" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="1" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" />

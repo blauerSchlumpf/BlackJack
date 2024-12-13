@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using BlackJack.Views;
 using Microsoft.VisualBasic;
+using System.Collections.ObjectModel;
 using Views;
 
 namespace BlackJack
@@ -10,6 +11,7 @@ namespace BlackJack
         Deck deck = new Deck();
         Player player = new Player();
         int sheetCount = 0;
+        ObservableCollection<Card> cards = new ObservableCollection<Card>();
         public MainWindow()
         {
             InitializeComponent();
@@ -32,6 +34,7 @@ namespace BlackJack
             // Anstelle playersheet observablecollection des Players
             PlayerSheet.Children.Add(cardView);
             player.Sheet.Add(card);
+            cards.Add(card);
             sheetCount += card.Point;
             DataContext = this;
             //var test = TopSymbol.text;
