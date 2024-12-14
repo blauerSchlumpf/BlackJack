@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using BlackJack.Model;
 using BlackJack.Views;
 using Microsoft.VisualBasic;
 using System.Collections.ObjectModel;

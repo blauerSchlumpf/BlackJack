@@ -1,4 +1,4 @@
-﻿using BlackJack;
+﻿using BlackJack.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 

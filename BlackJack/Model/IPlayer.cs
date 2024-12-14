@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlackJack
+namespace BlackJack.Model
 {
     interface IPlayer
     {
@@ -12,6 +12,6 @@ namespace BlackJack
 
         void Stand() { }
 
-        int SheetCount() {  return 0; }
+        int SheetCount() { return 0; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlackJack
+namespace BlackJack.Model
 {
     class Deck
     {
@@ -20,7 +20,7 @@ namespace BlackJack
                 {
                     for (int v = 1; v < 14; v++)
                     {
-                       deck.Add(new Card(s, v));
+                        deck.Add(new Card(s, v));
                     }
                 }
             }
@@ -34,7 +34,7 @@ namespace BlackJack
                 var rnd = new Random();
                 deck = deck.OrderBy(x => rnd.Next()).ToList();
             }
-            
+
         }
 
         public Card PickCard()

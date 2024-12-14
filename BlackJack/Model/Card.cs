@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlackJack
+namespace BlackJack.Model
 {
     class Card : INotifyPropertyChanged
     {
         public char Suit { get; set; }
-        List<char> suits = new List<char>() { '\ue1ec', '\ue2a8', '\ue448', '\ue1ba'};
+        List<char> suits = new List<char>() { '\ue1ec', '\ue2a8', '\ue448', '\ue1ba' };
         // List<string> suits = new List<string>() { "Karo", "Herz", "Pik", "Kreuz" };
-        List<string> Values = new List<string>() {"A", "B", "D", "K"};
+        List<string> Values = new List<string>() { "A", "B", "D", "K" };
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -38,7 +38,7 @@ namespace BlackJack
                 Point = value;
 
             }
-            if(suit < 2)
+            if (suit < 2)
             {
                 Color = "Red";
             }
