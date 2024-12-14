@@ -4,8 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
         xmlns:local="clr-namespace:BlackJack"
-		xmlns:views="clr-namespace:BlackJack"
-        x:Class="BlackJack.MainWindow"
+		xmlns:views="clr-namespace:BlackJack.Views"
+        x:Class="BlackJack.Views.MainWindow"
         Title="BlackJack">
 
 	<views:MainView />

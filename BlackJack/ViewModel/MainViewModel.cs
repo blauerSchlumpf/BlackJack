@@ -1,24 +1,31 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using BlackJack.Model;
+using ReactiveUI;
+using CommunityToolkit.Mvvm.Input;
 
 namespace BlackJack.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        [ObservableProperty]
-        private string text  = "hello";
+        ObservableCollection<Card> cards { get; set; } = new ObservableCollection<Card> { };
 
         public MainViewModel()
         {
-            Task.Run(async () =>
-            {
-                await Task.Delay(2000);
-                Text = "juhuuu";
-            });
+        }
+
+        [RelayCommand]
+        public void NewCardCommand()
+        {
+            Console.WriteLine("neue kare");
+            cards.Add(new Card(1, 1));
         }
     }
+
 }

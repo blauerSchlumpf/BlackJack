@@ -12,6 +12,7 @@
     <None Remove="Assets\Fonts\Phosphor-Duotone.ttf" />
     <None Remove="Assets\Fonts\Phosphor-Fill.ttf" />
     <None Remove="Assets\Fonts\Phosphor.ttf" />
+    <None Remove="Views\UserControl1.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,7 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="ReactiveUI" Version="20.1.63" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,4 +38,5 @@
     <AvaloniaResource Include="Assets\Fonts\Phosphor-Fill.ttf" />
     <AvaloniaResource Include="Assets\Fonts\Phosphor.ttf" />
   </ItemGroup>
+
 </Project>
