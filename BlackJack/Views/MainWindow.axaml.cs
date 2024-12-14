@@ -9,14 +9,14 @@ namespace BlackJack
     public partial class MainWindow : Window
     {
         Deck deck = new Deck();
-        Player player = new Player();
+        Player player;
         int sheetCount = 0;
         ObservableCollection<Card> cards = new ObservableCollection<Card>();
         public MainWindow()
         {
             InitializeComponent();
-
-            DataContext = this;
+            player =  new Player();
+            DataContext = new { player };
         }
 
         private void OpenSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -32,11 +32,10 @@ namespace BlackJack
             cardView.SetCardData(card.Value, card.Suit, card.Color);
 
             // Anstelle playersheet observablecollection des Players
-            PlayerSheet.Children.Add(cardView);
+            //PlayerSheet.Children.Add(cardView);
             player.Sheet.Add(card);
             cards.Add(card);
             sheetCount += card.Point;
-            DataContext = this;
             //var test = TopSymbol.text;
 
             // Hier die summe der Karten ausrechnen
