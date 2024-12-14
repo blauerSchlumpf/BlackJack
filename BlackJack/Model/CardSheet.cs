@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Model
 {
-    class Deck
+    class CardSheet
     {
-        int deckCount = 1;
+        int sheetCount = 1;
         int shuffleCount = 5;
-        List<Card> deck = new List<Card>();
+        List<Card> sheet = new List<Card>();
 
-        public Deck()
+        public CardSheet()
         {
-            for (int i = 0; i < deckCount; i++)
+            for (int i = 0; i < sheetCount; i++)
             {
                 for (int s = 0; s < 4; s++)
                 {
                     for (int v = 1; v < 14; v++)
                     {
-                        deck.Add(new Card(s, v));
+                        sheet.Add(new Card(s, v));
                     }
                 }
             }
@@ -32,15 +32,15 @@ namespace BlackJack.Model
             for (int i = 0; i < shuffleCount; i++)
             {
                 var rnd = new Random();
-                deck = deck.OrderBy(x => rnd.Next()).ToList();
+                sheet = sheet.OrderBy(x => rnd.Next()).ToList();
             }
 
         }
 
         public Card PickCard()
         {
-            Card card = deck[0];
-            deck.RemoveAt(0);
+            Card card = sheet[0];
+            sheet.RemoveAt(0);
             Console.WriteLine(card.Suit);
             return card;
         }

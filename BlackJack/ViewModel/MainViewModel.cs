@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using BlackJack.Model;
-using ReactiveUI;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BlackJack.ViewModel
@@ -15,6 +14,7 @@ namespace BlackJack.ViewModel
     public partial class MainViewModel : ObservableObject
     {
         ObservableCollection<Card> cards { get; set; } = new ObservableCollection<Card> { };
+        GameMaster gameMaster { get; set; } = new GameMaster();
 
         public MainViewModel()
         {
@@ -23,8 +23,7 @@ namespace BlackJack.ViewModel
         [RelayCommand]
         public void NewCardCommand()
         {
-            Console.WriteLine("neue kare");
-            cards.Add(new Card(1, 1));
+            gameMaster.player.Sheet.Add(gameMaster.cardSheet.PickCard());
         }
     }
 

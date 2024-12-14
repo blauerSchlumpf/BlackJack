@@ -7,7 +7,6 @@ namespace BlackJack.Views;
 
 public partial class MainView : UserControl
 {
-    public MainViewModel ViewModel { get; set; }
     public MainView()
     {
         InitializeComponent();
