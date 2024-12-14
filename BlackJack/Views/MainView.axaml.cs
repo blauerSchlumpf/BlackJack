@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace BlackJack;
 
-public partial class UserControl1 : UserControl
+public partial class MainView : UserControl
 {
-    public UserControl1()
+    public MainView()
     {
         InitializeComponent();
     }
