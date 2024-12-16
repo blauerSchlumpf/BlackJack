@@ -17,7 +17,7 @@
 		<StackPanel Grid.Row="1" Background="Aqua">
 			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
 				<Label Content="{Binding Dealer.Points}" Foreground="Black"></Label>
-				<ItemsControl ItemsSource="{Binding DealerCards}">
+				<ItemsControl ItemsSource="{Binding Dealer.Sheet}">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
 							<StackPanel Orientation="Horizontal" />							
@@ -48,8 +48,8 @@
 
 		<StackPanel Grid.Row="2" Background="BlueViolet">
 			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
-				<Label Content="{Binding SumPlayer}" Foreground="Black"></Label>
-				<ItemsControl ItemsSource="{Binding PlayerCards}">
+				<Label Content="{Binding Player.Points}" Foreground="Black"></Label>
+				<ItemsControl ItemsSource="{Binding Player.Sheet}">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
 							<StackPanel Orientation="Horizontal" />

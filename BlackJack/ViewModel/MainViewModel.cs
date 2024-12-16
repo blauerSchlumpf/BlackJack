@@ -21,20 +21,22 @@ namespace BlackJack.ViewModel
         int sumDealer;
         GameMaster gameMaster { get; set; } = new GameMaster();
         Dealer Dealer => gameMaster.dealer;
+        Player Player => gameMaster.player;
 
 
         public MainViewModel()
         {
-            DealerCards = gameMaster.dealer.sheet;
+            DealerCards = Dealer.Sheet;
             SumDealer = gameMaster.dealer.Points;
         }
 
         [RelayCommand]
         public void NewCardCommand()
         {
-            Card card = gameMaster.cardSheet.PickCard();
-            PlayerCards.Add(card);
-            SumPlayer += card.Point;
+            //Card card = gameMaster.cardSheet.PickCard();
+            //PlayerCards.Add(card);
+            //SumPlayer += card.Point;
+            Player.Hit(gameMaster.cardSheet);
         }
 
         [RelayCommand]

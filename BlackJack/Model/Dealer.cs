@@ -10,8 +10,9 @@ namespace BlackJack.Model
 {
     class Dealer : ObservableObject
     {
-        public ObservableCollection<Card> sheet { get; set; } = new ObservableCollection<Card>();
-        CardSheet sheetSheet { get; set; }
+        public ObservableCollection<Card> Sheet { get; set; } = new ObservableCollection<Card>();
+        CardSheet sheet { get; set; }
+        
         private int points;
         public int Points
         {
@@ -21,7 +22,7 @@ namespace BlackJack.Model
         public Dealer() { }
 
         public void MakeMove(CardSheet cardSheet) {
-            sheetSheet = cardSheet;
+            sheet = cardSheet;
             if(Points < 17)
             {
                 Hit();
@@ -30,8 +31,8 @@ namespace BlackJack.Model
 
         void Hit()
         {
-            Card card = sheetSheet.PickCard();
-            sheet.Add(card);
+            Card card = sheet.PickCard();
+            Sheet.Add(card);
             Points += card.Point;
         }
 
