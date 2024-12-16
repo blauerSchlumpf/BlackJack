@@ -14,16 +14,21 @@ namespace BlackJack.ViewModel
     public partial class MainViewModel : ObservableObject
     {
         ObservableCollection<Card> cards { get; set; } = new ObservableCollection<Card> { };
+        [ObservableProperty]
+        int sumPlayer;
         GameMaster gameMaster { get; set; } = new GameMaster();
 
         public MainViewModel()
         {
+
         }
 
         [RelayCommand]
         public void NewCardCommand()
         {
-            gameMaster.player.Sheet.Add(gameMaster.cardSheet.PickCard());
+            Card card = gameMaster.cardSheet.PickCard();
+            cards.Add(card);
+            SumPlayer += card.Point;
         }
     }
 

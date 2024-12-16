@@ -27,6 +27,7 @@ namespace BlackJack.Model
             Shuffle();
         }
 
+
         void Shuffle()
         {
             for (int i = 0; i < shuffleCount; i++)
