@@ -4,19 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:viewModels="clr-namespace:BlackJack.ViewModel;assembly=BlackJack"
+			 Background="Beige"
              x:Class="BlackJack.Views.MainView">
 	<Design.DataContext>
 		<viewModels:MainViewModel />
 	</Design.DataContext>
 	<Grid RowDefinitions="Auto, *, *, Auto">
-		<StackPanel Grid.Row="0" Background="AliceBlue">
+		<StackPanel Grid.Row="0">
 			<Button Classes="transparent" HorizontalAlignment="Right">
 				<Label Classes="IconFill" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>
 			</Button>
 		</StackPanel>
-		<StackPanel Grid.Row="1" Background="Aqua">
-			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
-				<Label Content="{Binding Dealer.Points}" Foreground="Black"></Label>
+		<StackPanel Grid.Row="1">
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Orientation="Horizontal">
 				<ItemsControl ItemsSource="{Binding Dealer.Sheet}">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
@@ -26,7 +26,7 @@
 					<ItemsControl.ItemTemplate>
 						<DataTemplate>
 							<Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" Background="White" Margin="5" Width="100" Height="150">
-								<Grid RowDefinitions="Auto, *, Auto">
+								<Grid RowDefinitions="Auto, *, *, Auto">
 									<!--Top Symbol-->
 									<TextBlock Foreground="{Binding Color}" Text="{Binding Value}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="0" Margin="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" />
 									<!--CenterSymbol-->
@@ -42,13 +42,14 @@
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
+				<Label FontFamily="Helvetica" Content="{Binding Dealer.Points}" Foreground="Black"></Label>
 			</StackPanel>
 		</StackPanel>
 
 
-		<StackPanel Grid.Row="2" Background="BlueViolet">
-			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
-				<Label Content="{Binding Player.Points}" Foreground="Black"></Label>
+		<StackPanel Grid.Row="2">
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Orientation="Horizontal">
+				
 				<ItemsControl ItemsSource="{Binding Player.Sheet}">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
@@ -74,11 +75,15 @@
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
+				<Label Content="{Binding Player.Points}" Foreground="Black"></Label>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
-			<Button Content="Hit" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
-			<Button Content="Stand" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
+		<StackPanel Grid.Row="3">
+			<Slider ></Slider>
+			<StackPanel VerticalAlignment="Center" Background="Gray" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
+				<Button Content="Hit" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
+				<Button Content="Stand" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
+			</StackPanel>
 		</StackPanel>
 	</Grid>
 </UserControl>
