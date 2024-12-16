@@ -13,22 +13,32 @@ namespace BlackJack.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        ObservableCollection<Card> cards { get; set; } = new ObservableCollection<Card> { };
+        ObservableCollection<Card> PlayerCards { get; set; } = new ObservableCollection<Card> { };
+        ObservableCollection<Card> DealerCards { get; set; }
         [ObservableProperty]
         int sumPlayer;
+        [ObservableProperty]
+        int sumDealer;
         GameMaster gameMaster { get; set; } = new GameMaster();
 
         public MainViewModel()
         {
-
+            DealerCards = gameMaster.dealer.sheet;
+            SumDealer = gameMaster.dealer.Points;
         }
 
         [RelayCommand]
         public void NewCardCommand()
         {
             Card card = gameMaster.cardSheet.PickCard();
-            cards.Add(card);
+            PlayerCards.Add(card);
             SumPlayer += card.Point;
+        }
+
+        [RelayCommand]
+        public void DealersTurnCommand()
+        {
+            gameMaster.dealer.MakeMove(gameMaster.cardSheet);
         }
     }
 
