@@ -20,6 +20,8 @@ namespace BlackJack.ViewModel
         [ObservableProperty]
         int sumDealer;
         GameMaster gameMaster { get; set; } = new GameMaster();
+        Dealer Dealer => gameMaster.dealer;
+
 
         public MainViewModel()
         {
@@ -38,7 +40,7 @@ namespace BlackJack.ViewModel
         [RelayCommand]
         public void DealersTurnCommand()
         {
-            gameMaster.dealer.MakeMove(gameMaster.cardSheet);
+            Dealer.MakeMove(gameMaster.cardSheet);
         }
     }
 

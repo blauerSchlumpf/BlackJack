@@ -16,7 +16,7 @@
 		</StackPanel>
 		<StackPanel Grid.Row="1" Background="Aqua">
 			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
-				<Label Content="{Binding SumDealer}" Foreground="Black"></Label>
+				<Label Content="{Binding Dealer.Points}" Foreground="Black"></Label>
 				<ItemsControl ItemsSource="{Binding DealerCards}">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
