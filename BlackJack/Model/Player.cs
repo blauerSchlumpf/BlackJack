@@ -10,6 +10,7 @@ class Player : ObservableObject
     public ObservableCollection<Card> Sheet { get; set; } = new ObservableCollection<Card>();
     public int Budget { get; set; }
     private int points;
+    public int Bet { get; set; }
     public int Points
     {
         get => points;
