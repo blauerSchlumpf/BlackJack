@@ -14,6 +14,7 @@
 			<Button Classes="transparent" HorizontalAlignment="Right">
 				<Label Classes="IconFill" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>
 			</Button>
+      <Label Foreground="Black" Content="{Binding Player.Bet}"></Label>
 		</StackPanel>
 		<StackPanel Grid.Row="1">
 			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Orientation="Horizontal">
@@ -79,8 +80,11 @@
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.Row="3">
-			<Slider x:Name="BudgetSlider" Maximum="{Binding Player.Budget}" Value="{Binding Player.Bet}" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
-      <TextBox Text="{Binding ElementName=BudgetSlider, Path=Value}" ></TextBox>
+			<Slider Maximum="{Binding Player.Budget}" Value="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
+      <StackPanel Orientation="Horizontal">
+        <TextBox Text="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" ></TextBox>
+        <Button Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Speichern</Button>
+      </StackPanel>
 			<StackPanel VerticalAlignment="Center" Background="Gray" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
 				<Button Content="Hit" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
 				<Button Content="Stand" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
