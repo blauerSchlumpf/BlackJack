@@ -11,31 +11,20 @@ namespace BlackJack.Model
     class Dealer : ObservableObject
     {
         public ObservableCollection<Card> Sheet { get; set; } = new ObservableCollection<Card>();
-        CardSheet sheet { get; set; }
-        
+
         private int points;
         public int Points
         {
             get => points;
             set => SetProperty(ref points, value); // CommunityToolkit hilft dabei
         }
-        public Dealer(CardSheet cardSheet) 
+        public Dealer()
         {
-            sheet = cardSheet;
-        }
-
-        public bool MakeMove() {
-            if(Points < 17)
-            {
-                Hit(sheet.PickCard());
-                return true;
-            }
-            return false;
         }
 
         public bool Hit(Card card)
         {
-            if ( Points < 17)
+            if (Points < 17)
             {
                 Sheet.Add(card);
                 Points += card.Point;
@@ -44,10 +33,6 @@ namespace BlackJack.Model
             return false;
         }
 
-        void Stand() 
-        {
-            
-        }
     }
 
 }

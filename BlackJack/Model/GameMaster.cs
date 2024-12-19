@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,16 +8,23 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Model
 {
-    class GameMaster
+    class GameMaster : ObservableObject
     {
+        public event Action<string> GameOver;
+        string result;
+
         public Player player;
         public Dealer dealer;
         public CardSheet cardSheet;
+
+
+        double winIndicator;
         public GameMaster() 
         {
+            winIndicator = 5.0;
             cardSheet = new CardSheet();
             player = new Player();
-            dealer = new Dealer(cardSheet);
+            dealer = new Dealer();
           
         }
 
@@ -27,9 +35,10 @@ namespace BlackJack.Model
             dealer.Hit(cardSheet.PickCard());
             if(GetBlackJack(player.Sheet, player.Points))
             {
-                //spieler hat blackjack und gewonnen
+                PayOut();
             }
-            
+            DealerMakeMove();
+
         }
 
         public void SetBet(int bet)
@@ -37,6 +46,7 @@ namespace BlackJack.Model
             player.Bet = bet;
             player.Budget -= player.Bet;
             StartGame();
+
         }
 
         public void PlayerHit()
@@ -44,10 +54,16 @@ namespace BlackJack.Model
             player.Hit(cardSheet.PickCard());
             if (GetLoser(player.Sheet, player.Points))
             {
-                // spieler verliert
+                result = "Dealer gewinnt, Spieler hat sich überkauft";
+                winIndicator = 0;
             }
         }
-        
+        public void PayOut()
+        {
+            player.Budget += Convert.ToInt32(player.Bet * winIndicator);
+            player.Bet = 0;
+        }
+
         public void DealerMakeMove()
         {
             bool moveMade = true;
@@ -79,21 +95,26 @@ namespace BlackJack.Model
         {
             if (cards.Count == 2 && points == 21)
             {
+                if ()
+                winIndicator = 2.5;
                 return true;
             }
             return false;
         }
 
-        public int GetPlayerWins(int playerPoints, int dealerPoints)
+        public void GetPlayerWins(int playerPoints, int dealerPoints)
         {
             if (playerPoints > dealerPoints)
             {
-                return 1;
+                result = "Spieler gewinnt!";
+                winIndicator = 2;
             }else if (dealerPoints > playerPoints) 
             {
-                return -1;    
+                result = "Dealer gewinnt!";
+                winIndicator =  0;    
             }
-            return 0;
+            result = "Unentschieden";
+            winIndicator = 1;
         }
     }
 }

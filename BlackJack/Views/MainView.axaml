@@ -86,8 +86,8 @@
         <Button Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Save</Button>
       </StackPanel>
 			<StackPanel VerticalAlignment="Center" Background="Gray" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
-				<Button Content="Hit" IsEnabled="{Binding HitEnabled}" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
-				<Button Content="Stand" IsEnabled="{Binding HitEnabled}" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
+				<Button Content="Hit" IsEnabled="{Binding ButtonEnabled}" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
+				<Button Content="Stand" IsEnabled="{Binding ButtonEnabled}" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

@@ -31,6 +31,8 @@ class Player : ObservableObject
             }
         }
     }
+
+
      int points;
     public int Points
     {

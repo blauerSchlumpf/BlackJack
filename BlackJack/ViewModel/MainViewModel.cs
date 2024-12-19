@@ -29,7 +29,7 @@ namespace BlackJack.ViewModel
         public MainViewModel()
         {
             BudgetVisibility = true;
-            HitEnabled = true;
+            gameMaster.GameOver += OnGameOver;
         }
 
         [RelayCommand]
@@ -41,7 +41,7 @@ namespace BlackJack.ViewModel
         [RelayCommand]
         public void DealersTurnCommand()
         {
-            HitEnabled = false;
+            ButtonEnabled = false;
             gameMaster.DealerMakeMove();
         }
 
@@ -50,6 +50,13 @@ namespace BlackJack.ViewModel
         {
             gameMaster.SetBet(BetSliderValue);
             BudgetVisibility = false;
+            ButtonEnabled = true;
+        }
+
+        private void OnGameOver(string result)
+        {
+            // MessageBox anzeigen
+            MessageBox.Show(result, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 
