@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using BlackJack.Model;
 using CommunityToolkit.Mvvm.Input;
+using Avalonia.Controls.ApplicationLifetimes;
 
 namespace BlackJack.ViewModel
 {
@@ -29,7 +30,11 @@ namespace BlackJack.ViewModel
         public MainViewModel()
         {
             BudgetVisibility = true;
-            gameMaster.GameOver += OnGameOver;
+
+            gameMaster.OnPlayerLost = () =>
+            {
+                DealersTurnCommand();
+            };
         }
 
         [RelayCommand]
@@ -39,10 +44,12 @@ namespace BlackJack.ViewModel
         }
 
         [RelayCommand]
-        public void DealersTurnCommand()
+        public async void DealersTurnCommand()
         {
             ButtonEnabled = false;
             gameMaster.DealerMakeMove();
+
+            await ShowResultAsync();
         }
 
         [RelayCommand]
@@ -53,10 +60,14 @@ namespace BlackJack.ViewModel
             ButtonEnabled = true;
         }
 
-        private void OnGameOver(string result)
+        public async Task ShowResultAsync()
         {
-            // MessageBox anzeigen
-            MessageBox.Show(result, "Spiel beendet", MessageBoxButton.OK, MessageBoxImage.Information);
+            var result = gameMaster.Result;
+
+            // Zeige das Ergebnis in einem Dialog an
+            var window = new Views.MessageBoxWindow();
+            window.DataContext = new MessageBoxViewModel(result, window);
+            window.Show();
         }
     }
 

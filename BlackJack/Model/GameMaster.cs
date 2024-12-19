@@ -11,12 +11,19 @@ namespace BlackJack.Model
     class GameMaster : ObservableObject
     {
         public event Action<string> GameOver;
-        string result;
+        public Action OnPlayerLost;
+        public string Result { get; set; } = string.Empty;
 
         public Player player;
         public Dealer dealer;
         public CardSheet cardSheet;
 
+        bool canMakeMove;
+        public bool CanMakeMove
+        {
+            get => canMakeMove;
+            set => SetProperty(ref canMakeMove, value);
+        }
 
         double winIndicator;
         public GameMaster() 
@@ -25,6 +32,7 @@ namespace BlackJack.Model
             cardSheet = new CardSheet();
             player = new Player();
             dealer = new Dealer();
+            CanMakeMove = true;
           
         }
 
@@ -33,12 +41,6 @@ namespace BlackJack.Model
             player.Hit(cardSheet.PickCard());
             player.Hit(cardSheet.PickCard());
             dealer.Hit(cardSheet.PickCard());
-            if(GetBlackJack(player.Sheet, player.Points))
-            {
-                PayOut();
-            }
-            DealerMakeMove();
-
         }
 
         public void SetBet(int bet)
@@ -52,10 +54,9 @@ namespace BlackJack.Model
         public void PlayerHit()
         {
             player.Hit(cardSheet.PickCard());
-            if (GetLoser(player.Sheet, player.Points))
+            if (TooManyCards(player.Sheet, player.Points))
             {
-                result = "Dealer gewinnt, Spieler hat sich überkauft";
-                winIndicator = 0;
+                OnPlayerLost.Invoke();
             }
         }
         public void PayOut()
@@ -67,14 +68,20 @@ namespace BlackJack.Model
         public void DealerMakeMove()
         {
             bool moveMade = true;
-            while (moveMade)
+            while (moveMade && TooManyCards(dealer.Sheet, dealer.Points))
             {
                 moveMade = dealer.Hit(cardSheet.PickCard());
             }
-
+            FindWinner();
         }
 
-        public bool GetLoser(ObservableCollection<Card> cards, int points)
+        public void FindWinner()
+        {
+            GetPlayerWins();
+            GetBlackJack();
+        }
+
+        public bool TooManyCards(ObservableCollection<Card> cards, int points)
         {
             if (points > 21)
             {
@@ -91,30 +98,57 @@ namespace BlackJack.Model
             return false;
         }
 
-        public bool GetBlackJack(ObservableCollection<Card> cards, int points)
+        public void GetBlackJack()
         {
-            if (cards.Count == 2 && points == 21)
+            if (player.Sheet.Count == 2 && player.Points == 21 || dealer.Sheet.Count == 2 && dealer.Points == 21)
             {
-                if ()
+                Result = "Spieler gewinnt mit BlackJack";
                 winIndicator = 2.5;
-                return true;
+                if (dealer.Sheet.Count == 2 && dealer.Points == 21)
+                {
+                    Result = "Dealer gewinnt mit BlackJack";
+                    winIndicator = 0;
+                }
+                if (player.Sheet.Count == 2 && player.Points == 21 && dealer.Sheet.Count == 2 && dealer.Points == 21)
+                {
+                    Result = "Unendschieden! Spieler und Dealer haben Blackjack.";
+                    winIndicator = 1;
+                }
             }
-            return false;
         }
 
-        public void GetPlayerWins(int playerPoints, int dealerPoints)
+        public void GetPlayerWins()
         {
-            if (playerPoints > dealerPoints)
+            if (player.Points > 21 || dealer.Points > 21)
             {
-                result = "Spieler gewinnt!";
-                winIndicator = 2;
-            }else if (dealerPoints > playerPoints) 
-            {
-                result = "Dealer gewinnt!";
-                winIndicator =  0;    
+                if (player.Points > 21)
+                {
+                    Result = "Dealer gewinnt! Spieler hat sich überkauft";
+                    winIndicator = 0;
+                }else if (dealer.Points > 21) 
+                {                    
+                    Result = "Spieler gewinnt! Dealer hat sich überkauft";
+                    winIndicator = 2; 
+                }
+                else
+                {
+                    Result = "Unendschieden! Alle haben sich überkauft";
+                    winIndicator = 1;
+                }
+            } else {
+                if (player.Points > dealer.Points)
+                {
+                    Result = "Spieler gewinnt!";
+                    winIndicator = 2;
+                }
+                else if (dealer.Points > player.Points)
+                {
+                    Result = "Dealer gewinnt!";
+                    winIndicator = 0;
+                }
+                Result = "Unentschieden";
+                winIndicator = 1;
             }
-            result = "Unentschieden";
-            winIndicator = 1;
         }
     }
 }
