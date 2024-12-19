@@ -19,21 +19,29 @@ namespace BlackJack.Model
             get => points;
             set => SetProperty(ref points, value); // CommunityToolkit hilft dabei
         }
-        public Dealer() { }
-
-        public void MakeMove(CardSheet cardSheet) {
+        public Dealer(CardSheet cardSheet) 
+        {
             sheet = cardSheet;
-            if(Points < 17)
-            {
-                Hit();
-            }
         }
 
-        void Hit()
+        public bool MakeMove() {
+            if(Points < 17)
+            {
+                Hit(sheet.PickCard());
+                return true;
+            }
+            return false;
+        }
+
+        public bool Hit(Card card)
         {
-            Card card = sheet.PickCard();
-            Sheet.Add(card);
-            Points += card.Point;
+            if ( Points < 17)
+            {
+                Sheet.Add(card);
+                Points += card.Point;
+                return true;
+            }
+            return false;
         }
 
         void Stand() 

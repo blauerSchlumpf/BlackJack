@@ -18,6 +18,8 @@ namespace BlackJack.ViewModel
         [ObservableProperty]
         bool budgetVisibility;
         [ObservableProperty]
+        bool buttonEnabled;
+        [ObservableProperty]
         int betSliderValue;
         GameMaster gameMaster { get; set; } = new GameMaster();
         Dealer Dealer => gameMaster.dealer;
@@ -27,28 +29,27 @@ namespace BlackJack.ViewModel
         public MainViewModel()
         {
             BudgetVisibility = true;
+            HitEnabled = true;
         }
 
         [RelayCommand]
         public void NewCardCommand()
         {
-            //Card card = gameMaster.cardSheet.PickCard();
-            //PlayerCards.Add(card);
-            //SumPlayer += card.Point;
-            Player.Hit(gameMaster.cardSheet);
+            gameMaster.PlayerHit();
         }
 
         [RelayCommand]
         public void DealersTurnCommand()
         {
-            Dealer.MakeMove(gameMaster.cardSheet);
+            HitEnabled = false;
+            gameMaster.DealerMakeMove();
         }
 
         [RelayCommand]
         public void SetBudgetCommand()
         {
-            Player.Bet = BetSliderValue;
-            budgetVisibility = false;
+            gameMaster.SetBet(BetSliderValue);
+            BudgetVisibility = false;
         }
     }
 

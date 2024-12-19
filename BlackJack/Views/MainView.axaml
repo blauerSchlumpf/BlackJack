@@ -10,12 +10,12 @@
 		<viewModels:MainViewModel />
 	</Design.DataContext>
 	<Grid RowDefinitions="Auto, *, *, Auto">
-		<StackPanel Grid.Row="0">
-			<Button Classes="transparent" HorizontalAlignment="Right">
-				<Label Classes="IconFill" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>
-			</Button>
-      <Label Foreground="Black" Content="{Binding Player.Bet}"></Label>
-		</StackPanel>
+			<Grid Grid.Row="0" ColumnDefinitions="*, *, auto">
+				<Label Grid.Column="0" Foreground="Black" Content="{Binding Player.Budget, StringFormat = Budget: {0:C}}"></Label>
+				<Label Grid.Column="1" Foreground="Black" Content="{Binding Player.Bet, StringFormat = Bet: {0:C}}"></Label>
+				<Button Grid.Column="2" Classes="transparent" HorizontalAlignment="Right">
+					<Label Classes="IconFill" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>
+				</Button>			</Grid>
 		<StackPanel Grid.Row="1">
 			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Orientation="Horizontal">
 				<ItemsControl ItemsSource="{Binding Dealer.Sheet}">
@@ -83,11 +83,11 @@
 			<Slider Maximum="{Binding Player.Budget}" Value="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
       <StackPanel Orientation="Horizontal">
         <TextBox Text="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" ></TextBox>
-        <Button Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Speichern</Button>
+        <Button Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Save</Button>
       </StackPanel>
 			<StackPanel VerticalAlignment="Center" Background="Gray" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
-				<Button Content="Hit" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
-				<Button Content="Stand" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
+				<Button Content="Hit" IsEnabled="{Binding HitEnabled}" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
+				<Button Content="Stand" IsEnabled="{Binding HitEnabled}" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
 			</StackPanel>
 		</StackPanel>
 	</Grid>
