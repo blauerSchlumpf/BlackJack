@@ -146,9 +146,13 @@ namespace BlackJack.Model
                     Result = "Dealer gewinnt!";
                     winIndicator = 0;
                 }
-                Result = "Unentschieden";
-                winIndicator = 1;
+                else
+                {
+                    Result = "Unentschieden";
+                    winIndicator = 1;
+                }
             }
+            PayOut();
         }
     }
 }
