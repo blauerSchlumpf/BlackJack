@@ -36,7 +36,7 @@ namespace BlackJack.Model
           
         }
 
-        public async void StartGame()
+        public void StartGame()
         {
             player.Hit(cardSheet.PickCard());
             player.Hit(cardSheet.PickCard());
@@ -68,7 +68,7 @@ namespace BlackJack.Model
         public void DealerMakeMove()
         {
             bool moveMade = true;
-            while (moveMade && TooManyCards(dealer.Sheet, dealer.Points))
+            while (moveMade && !TooManyCards(dealer.Sheet, dealer.Points))
             {
                 moveMade = dealer.Hit(cardSheet.PickCard());
             }
