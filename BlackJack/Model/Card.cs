@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Model
 {
-    class Card : INotifyPropertyChanged
+    class Card
     {
         public char Suit { get; set; }
         List<char> suits = new List<char>() { '\ue1ec', '\ue2a8', '\ue448', '\ue1ba' };
         // List<string> suits = new List<string>() { "Karo", "Herz", "Pik", "Kreuz" };
         List<string> Values = new List<string>() { "A", "B", "D", "K" };
 
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         public string Color { get; }
         public string Value { get; }

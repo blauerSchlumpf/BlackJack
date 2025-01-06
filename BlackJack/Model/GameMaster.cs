@@ -10,8 +10,7 @@ namespace BlackJack.Model
 {
     class GameMaster : ObservableObject
     {
-        public event Action<string> GameOver;
-        public Action OnPlayerLost;
+        public Action? OnPlayerLost;
         public string Result { get; set; } = string.Empty;
 
         public Player player;
@@ -26,14 +25,14 @@ namespace BlackJack.Model
         }
 
         double winIndicator;
-        public GameMaster() 
+        public GameMaster()
         {
             winIndicator = 5.0;
             cardSheet = new CardSheet();
             player = new Player();
             dealer = new Dealer();
             CanMakeMove = true;
-          
+
         }
 
         public void StartGame()
@@ -87,7 +86,8 @@ namespace BlackJack.Model
             {
                 foreach (Card card in cards)
                 {
-                    if (card.Point == 11){
+                    if (card.Point == 11)
+                    {
                         points -= 10;
                         card.Point = 1;
                         return true;
@@ -125,17 +125,20 @@ namespace BlackJack.Model
                 {
                     Result = "Dealer gewinnt! Spieler hat sich überkauft";
                     winIndicator = 0;
-                }else if (dealer.Points > 21) 
-                {                    
+                }
+                else if (dealer.Points > 21)
+                {
                     Result = "Spieler gewinnt! Dealer hat sich überkauft";
-                    winIndicator = 2; 
+                    winIndicator = 2;
                 }
                 else
                 {
                     Result = "Unendschieden! Alle haben sich überkauft";
                     winIndicator = 1;
                 }
-            } else {
+            }
+            else
+            {
                 if (player.Points > dealer.Points)
                 {
                     Result = "Spieler gewinnt!";

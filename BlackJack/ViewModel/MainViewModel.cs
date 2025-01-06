@@ -15,7 +15,7 @@ namespace BlackJack.ViewModel
     public partial class MainViewModel : ObservableObject
     {
         ObservableCollection<Card> PlayerCards { get; set; } = new ObservableCollection<Card> { };
-        ObservableCollection<Card> DealerCards { get; set; }
+        ObservableCollection<Card>? DealerCards { get; set; }
         [ObservableProperty]
         bool budgetVisibility;
         [ObservableProperty]
@@ -44,12 +44,12 @@ namespace BlackJack.ViewModel
         }
 
         [RelayCommand]
-        public async void DealersTurnCommand()
+        public void DealersTurnCommand()
         {
             ButtonEnabled = false;
             gameMaster.DealerMakeMove();
 
-            await ShowResultAsync();
+            ShowResultAsync();
         }
 
         [RelayCommand]
@@ -60,7 +60,7 @@ namespace BlackJack.ViewModel
             ButtonEnabled = true;
         }
 
-        public async Task ShowResultAsync()
+        public void ShowResultAsync()
         {
             var result = gameMaster.Result;
 

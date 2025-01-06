@@ -13,6 +13,7 @@ public class MessageBoxViewModel
     {
         Message = message;
         this.window = window;
+        
         CloseCommand = new RelayCommand(() => window.Close());
     }
 }
