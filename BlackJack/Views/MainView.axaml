@@ -15,7 +15,8 @@
 				<Label Grid.Column="1" Foreground="Black" Content="{Binding Player.Bet, StringFormat = Bet: {0:C}}"></Label>
 				<Button Grid.Column="2" Classes="transparent" HorizontalAlignment="Right">
 					<Label Classes="IconFill" Foreground="ForestGreen" FontSize="25">&#xe270;</Label>
-				</Button>			</Grid>
+				</Button>			
+			</Grid>
 		<StackPanel Grid.Row="1">
 			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Orientation="Horizontal">
 				<ItemsControl ItemsSource="{Binding Dealer.Sheet}">
@@ -43,7 +44,7 @@
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
-				<Label FontFamily="Helvetica" Content="{Binding Dealer.Points}" Foreground="Black"></Label>
+				<Label FontFamily="Helvetica" Content="{Binding Dealer.Points}" Foreground="Black" IsVisible="{Binding !BudgetVisibility}"></Label>
 			</StackPanel>
 		</StackPanel>
 
@@ -76,7 +77,7 @@
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
-				<Label Content="{Binding Player.Points}" Foreground="Black"></Label>
+				<Label Content="{Binding Player.Points}" Foreground="Black" IsVisible="{Binding !BudgetVisibility}"/>
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.Row="3">

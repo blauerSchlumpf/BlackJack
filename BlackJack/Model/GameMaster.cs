@@ -38,12 +38,14 @@ namespace BlackJack.Model
 
         public void StartGame()
         {
-            player.Sheet.Clear();
-            dealer.Sheet.Clear();
-
             player.Hit(cardSheet.PickCard());
             player.Hit(cardSheet.PickCard());
             dealer.Hit(cardSheet.PickCard());
+        }
+        public void ClearCards()
+        {
+            player.Sheet.Clear();
+            dealer.Sheet.Clear();
         }
 
         public void SetBet(int bet)

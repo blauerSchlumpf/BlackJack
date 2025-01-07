@@ -46,7 +46,7 @@ namespace BlackJack.ViewModel
             ButtonEnabled = false;
             Dealer = gameMaster.dealer;
             Player = gameMaster.player;
-            gameMaster.StartGame();
+            gameMaster.ClearCards();
             gameMaster.OnPlayerLost = () =>
             {
                 DealersTurnCommand();
