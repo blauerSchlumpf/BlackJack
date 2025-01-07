@@ -25,11 +25,12 @@ namespace BlackJack.Model
         }
 
         double winIndicator;
-        public GameMaster()
+        public GameMaster(int playerBudget)
         {
             winIndicator = 5.0;
             cardSheet = new CardSheet();
             player = new Player();
+            player.Budget = playerBudget;
             dealer = new Dealer();
             CanMakeMove = true;
 

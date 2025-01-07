@@ -14,15 +14,13 @@ namespace BlackJack.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        ObservableCollection<Card> PlayerCards { get; set; } = new ObservableCollection<Card> { };
-        ObservableCollection<Card>? DealerCards { get; set; }
         [ObservableProperty]
         bool budgetVisibility;
         [ObservableProperty]
         bool buttonEnabled;
         [ObservableProperty]
         int betSliderValue;
-        GameMaster gameMaster { get; set; } = new GameMaster();
+        GameMaster gameMaster { get; set; } = new GameMaster(600);
         Dealer Dealer => gameMaster.dealer;
         Player Player => gameMaster.player;
 
@@ -35,6 +33,11 @@ namespace BlackJack.ViewModel
             {
                 DealersTurnCommand();
             };
+        }
+        public void RestartGame()
+        {
+            gameMaster = new GameMaster(Player.Budget);
+            ButtonEnabled = true;
         }
 
         [RelayCommand]
@@ -66,7 +69,7 @@ namespace BlackJack.ViewModel
 
             // Zeige das Ergebnis in einem Dialog an
             var window = new Views.MessageBoxWindow();
-            window.DataContext = new MessageBoxViewModel(result, window);
+            window.DataContext = new MessageBoxViewModel(result, window, RestartGame);
             window.Show();
         }
     }
