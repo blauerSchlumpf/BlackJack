@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Model
 {
-    class Dealer : ObservableObject
+    public class Dealer : ObservableObject
     {
         public ObservableCollection<Card> Sheet { get; set; } = new ObservableCollection<Card>();
 

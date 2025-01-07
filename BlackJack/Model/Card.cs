@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Model
 {
-    class Card
+    public class Card
     {
         public char Suit { get; set; }
         List<char> suits = new List<char>() { '\ue1ec', '\ue2a8', '\ue448', '\ue1ba' };

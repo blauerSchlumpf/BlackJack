@@ -4,7 +4,7 @@ using BlackJack.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 
-class Player : ObservableObject
+public class Player : ObservableObject
 {
 
     public ObservableCollection<Card> Sheet { get; set; } = new ObservableCollection<Card>();

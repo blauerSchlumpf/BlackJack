@@ -38,6 +38,9 @@ namespace BlackJack.Model
 
         public void StartGame()
         {
+            player.Sheet.Clear();
+            dealer.Sheet.Clear();
+
             player.Hit(cardSheet.PickCard());
             player.Hit(cardSheet.PickCard());
             dealer.Hit(cardSheet.PickCard());

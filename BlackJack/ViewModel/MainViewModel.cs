@@ -21,23 +21,37 @@ namespace BlackJack.ViewModel
         [ObservableProperty]
         int betSliderValue;
         GameMaster gameMaster { get; set; } = new GameMaster(600);
-        Dealer Dealer => gameMaster.dealer;
-        Player Player => gameMaster.player;
+        [ObservableProperty]
+        Dealer dealer;
+        [ObservableProperty]
+        Player player;
 
 
         public MainViewModel()
         {
+            Player = gameMaster.player;
+            Dealer = gameMaster.dealer;
             BudgetVisibility = true;
-
             gameMaster.OnPlayerLost = () =>
             {
                 DealersTurnCommand();
             };
+
         }
         public void RestartGame()
         {
             gameMaster = new GameMaster(Player.Budget);
-            ButtonEnabled = true;
+            BetSliderValue = 0;
+            BudgetVisibility = true;
+            ButtonEnabled = false;
+            Dealer = gameMaster.dealer;
+            Player = gameMaster.player;
+            gameMaster.StartGame();
+            gameMaster.OnPlayerLost = () =>
+            {
+                DealersTurnCommand();
+            };
+
         }
 
         [RelayCommand]
