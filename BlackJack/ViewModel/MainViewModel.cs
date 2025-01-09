@@ -40,6 +40,7 @@ namespace BlackJack.ViewModel
         }
         public void RestartGame()
         {
+            gameMaster.PayOut();
             gameMaster = new GameMaster(Player.Budget);
             BetSliderValue = 0;
             BudgetVisibility = true;

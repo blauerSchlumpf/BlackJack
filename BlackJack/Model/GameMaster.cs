@@ -40,6 +40,7 @@ namespace BlackJack.Model
         {
             player.Hit(cardSheet.PickCard());
             player.Hit(cardSheet.PickCard());
+            PlayerTooManyCards();
             dealer.Hit(cardSheet.PickCard());
         }
         public void ClearCards()
@@ -59,7 +60,7 @@ namespace BlackJack.Model
         public void PlayerHit()
         {
             player.Hit(cardSheet.PickCard());
-            if (TooManyCards(player.Sheet, player.Points))
+            if (PlayerTooManyCards())
             {
                 OnPlayerLost.Invoke();
             }
@@ -73,7 +74,7 @@ namespace BlackJack.Model
         public void DealerMakeMove()
         {
             bool moveMade = true;
-            while (moveMade && !TooManyCards(dealer.Sheet, dealer.Points))
+            while (moveMade && !DealerTooManyCards())
             {
                 moveMade = dealer.Hit(cardSheet.PickCard());
             }
@@ -86,19 +87,37 @@ namespace BlackJack.Model
             GetBlackJack();
         }
 
-        public bool TooManyCards(ObservableCollection<Card> cards, int points)
+        public bool PlayerTooManyCards()
         {
-            if (points > 21)
+            if (player.Points > 21)
             {
-                foreach (Card card in cards)
+                foreach (Card card in player.Sheet)
                 {
                     if (card.Point == 11)
                     {
-                        points -= 10;
+                        player.Points -= 10;
                         card.Point = 1;
-                        return true;
+                        return false;
                     }
-                    return false;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool DealerTooManyCards()
+        {
+            if (dealer.Points > 21)
+            {
+                foreach (Card card in dealer.Sheet)
+                {
+                    if (card.Point == 11)
+                    {
+                        dealer.Points -= 10;
+                        card.Point = 1;
+                        return false;
+                    }
+                    return true;
                 }
             }
             return false;
@@ -127,7 +146,12 @@ namespace BlackJack.Model
         {
             if (player.Points > 21 || dealer.Points > 21)
             {
-                if (player.Points > 21)
+                if (player.Points > 21 && dealer.Points > 21)
+                {
+                    Result = "Unendschieden! Alle haben sich überkauft";
+                    winIndicator = 1;
+                }
+                else if (player.Points > 21)
                 {
                     Result = "Dealer gewinnt! Spieler hat sich überkauft";
                     winIndicator = 0;
@@ -136,11 +160,6 @@ namespace BlackJack.Model
                 {
                     Result = "Spieler gewinnt! Dealer hat sich überkauft";
                     winIndicator = 2;
-                }
-                else
-                {
-                    Result = "Unendschieden! Alle haben sich überkauft";
-                    winIndicator = 1;
                 }
             }
             else
@@ -161,7 +180,6 @@ namespace BlackJack.Model
                     winIndicator = 1;
                 }
             }
-            PayOut();
         }
     }
 }
