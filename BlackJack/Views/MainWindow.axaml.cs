@@ -2,7 +2,6 @@ using Avalonia.Controls;
 using BlackJack.Model;
 using Microsoft.VisualBasic;
 using System.Collections.ObjectModel;
-using Views;
 
 namespace BlackJack.Views
 {
@@ -13,10 +12,5 @@ namespace BlackJack.Views
             InitializeComponent();
         }
 
-        private void OpenSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-        {
-            var settings = new SettingsWindow();
-            settings.Show();
-        }
     }
 }

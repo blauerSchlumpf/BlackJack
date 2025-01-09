@@ -5,10 +5,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:viewModels="clr-namespace:BlackJack.ViewModel;assembly=BlackJack"
 			 Background="Beige"
+
              x:Class="BlackJack.Views.MainView">
 	<Design.DataContext>
 		<viewModels:MainViewModel />
 	</Design.DataContext>
+	
 	<Grid RowDefinitions="Auto, *, *, Auto">
 			<Grid Grid.Row="0" ColumnDefinitions="*, *, auto">
 				<Label Grid.Column="0" Foreground="Black" Content="{Binding Player.Budget, StringFormat = Budget: {0:C}}"></Label>
