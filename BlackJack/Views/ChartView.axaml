@@ -12,7 +12,7 @@
 	</Design.DataContext>
 
 	<lvc:CartesianChart
-        Series="{Binding Series}">
+        Series="{Binding ChartData}">
 	</lvc:CartesianChart>
 
 </UserControl>

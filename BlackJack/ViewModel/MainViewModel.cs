@@ -14,6 +14,8 @@ namespace BlackJack.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
+        ChartViewModel ChartViewModel { get; }
+
         [ObservableProperty]
         bool budgetVisibility;
         [ObservableProperty]
@@ -26,9 +28,10 @@ namespace BlackJack.ViewModel
         [ObservableProperty]
         Player player;
 
-
         public MainViewModel()
         {
+            ChartViewModel = new ChartViewModel();
+            gameMaster.OnChartUpdate += UpdateChart;
             Player = gameMaster.player;
             Dealer = gameMaster.dealer;
             BudgetVisibility = true;
@@ -36,8 +39,8 @@ namespace BlackJack.ViewModel
             {
                 DealersTurnCommand();
             };
-
         }
+
         public void RestartGame()
         {
             gameMaster.PayOut();
@@ -52,7 +55,6 @@ namespace BlackJack.ViewModel
             {
                 DealersTurnCommand();
             };
-
         }
 
         [RelayCommand]
@@ -66,7 +68,6 @@ namespace BlackJack.ViewModel
         {
             ButtonEnabled = false;
             gameMaster.DealerMakeMove();
-
             ShowResultAsync();
         }
 
@@ -81,12 +82,14 @@ namespace BlackJack.ViewModel
         public void ShowResultAsync()
         {
             var result = gameMaster.Result;
-
-            // Zeige das Ergebnis in einem Dialog an
             var window = new Views.MessageBoxWindow();
             window.DataContext = new MessageBoxViewModel(result, window, RestartGame);
             window.Show();
         }
-    }
 
+        public void UpdateChart(int budget, int bet, int profit)
+        {
+            ChartViewModel.UpdateChart(budget, bet, profit);
+        }
+    }
 }

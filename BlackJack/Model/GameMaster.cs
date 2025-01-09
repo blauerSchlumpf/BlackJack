@@ -11,6 +11,9 @@ namespace BlackJack.Model
     class GameMaster : ObservableObject
     {
         public Action? OnPlayerLost;
+        int profit;
+        int initialBudget;
+        public event Action<int, int, int>? OnChartUpdate;
         public string Result { get; set; } = string.Empty;
 
         public Player player;
@@ -23,14 +26,14 @@ namespace BlackJack.Model
             get => canMakeMove;
             set => SetProperty(ref canMakeMove, value);
         }
-
         double winIndicator;
         public GameMaster(int playerBudget)
         {
+            initialBudget = playerBudget;
             winIndicator = 5.0;
             cardSheet = new CardSheet();
             player = new Player();
-            player.Budget = playerBudget;
+            player.Budget = initialBudget;
             dealer = new Dealer();
             CanMakeMove = true;
 
@@ -54,7 +57,13 @@ namespace BlackJack.Model
             player.Bet = bet;
             player.Budget -= player.Bet;
             StartGame();
+        }
 
+        public void FinalValues()
+        {
+            profit = player.Budget - initialBudget;
+            OnChartUpdate.Invoke(player.Budget, player.Bet, profit);
+            player.Bet = 0;
         }
 
         public void PlayerHit()
@@ -68,7 +77,7 @@ namespace BlackJack.Model
         public void PayOut()
         {
             player.Budget += Convert.ToInt32(player.Bet * winIndicator);
-            player.Bet = 0;
+            FinalValues();
         }
 
         public void DealerMakeMove()
