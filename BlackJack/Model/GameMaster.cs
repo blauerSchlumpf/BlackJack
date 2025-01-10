@@ -13,7 +13,7 @@ namespace BlackJack.Model
         public Action? OnPlayerLost;
         int profit;
         int initialBudget;
-        public event Action<int, int, int>? OnChartUpdate;
+        public event Action<int, int, int> OnChartUpdate;
         public string Result { get; set; } = string.Empty;
 
         public Player player;
@@ -36,7 +36,6 @@ namespace BlackJack.Model
             player.Budget = initialBudget;
             dealer = new Dealer();
             CanMakeMove = true;
-
         }
 
         public void StartGame()
@@ -46,6 +45,7 @@ namespace BlackJack.Model
             PlayerTooManyCards();
             dealer.Hit(cardSheet.PickCard());
         }
+
         public void ClearCards()
         {
             player.Sheet.Clear();

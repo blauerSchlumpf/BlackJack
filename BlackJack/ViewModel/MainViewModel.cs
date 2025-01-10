@@ -45,6 +45,7 @@ namespace BlackJack.ViewModel
         {
             gameMaster.PayOut();
             gameMaster = new GameMaster(Player.Budget);
+            gameMaster.OnChartUpdate += UpdateChart;
             BetSliderValue = 0;
             BudgetVisibility = true;
             ButtonEnabled = false;

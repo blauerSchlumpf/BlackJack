@@ -16,7 +16,7 @@ namespace BlackJack.Model
         public int Points
         {
             get => points;
-            set => SetProperty(ref points, value); // CommunityToolkit hilft dabei
+            set => SetProperty(ref points, value);
         }
         public Dealer()
         {

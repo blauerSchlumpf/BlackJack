@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:viewModels="clr-namespace:BlackJack.ViewModel"
+             x:Class="BlackJack.Views.GameView">
+
+	<Design.DataContext>
+		<viewModels:GameViewModel />
+	</Design.DataContext>
+	<Grid RowDefinitions="auto, *,*, auto">
+		<Grid Grid.Row="0" ColumnDefinitions="*, auto">
+			<Label Grid.Column="0" Foreground="Black" Content="{Binding Player.Budget, StringFormat = Budget: {0:C}}"></Label>
+			<Label Grid.Column="1" Foreground="Black" Content="{Binding Player.Bet, StringFormat = Bet: {0:C}}"></Label>
+		</Grid>
+		<StackPanel Grid.Row="1">
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Orientation="Horizontal">
+				<ItemsControl ItemsSource="{Binding Dealer.Sheet}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" Background="White" Margin="5" Width="100" Height="150">
+								<Grid RowDefinitions="Auto, *, *, Auto">
+									<!--Top Symbol-->
+									<TextBlock Foreground="{Binding Color}" Text="{Binding Value}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="0" Margin="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" />
+									<!--CenterSymbol-->
+									<TextBlock Foreground="{Binding Color}" Text="{Binding Suit}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="1" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" />
+									<!--Bottom Symbol-->
+									<TextBlock Foreground="{Binding Color}" Text="{Binding Value}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="2" Margin="5" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+										<TextBlock.RenderTransform>
+											<RotateTransform Angle="180" />
+										</TextBlock.RenderTransform>
+									</TextBlock>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+				<Label FontFamily="Helvetica" Content="{Binding Dealer.Points}" Foreground="Black" IsVisible="{Binding !BudgetVisibility}"></Label>
+			</StackPanel>
+		</StackPanel>
+
+
+		<StackPanel Grid.Row="2">
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Orientation="Horizontal">
+
+				<ItemsControl ItemsSource="{Binding Player.Sheet}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" Background="White" Margin="5" Width="100" Height="150">
+								<Grid RowDefinitions="Auto, *, Auto">
+									<!--Top Symbol-->
+									<TextBlock Foreground="{Binding Color}" Text="{Binding Value}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="0" Margin="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" />
+									<!--CenterSymbol-->
+									<TextBlock Foreground="{Binding Color}" Text="{Binding Suit}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="1" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" />
+									<!--Bottom Symbol-->
+									<TextBlock Foreground="{Binding Color}" Text="{Binding Value}" FontFamily="{DynamicResource PhosphorFill}" Grid.Row="2" Margin="5" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+										<TextBlock.RenderTransform>
+											<RotateTransform Angle="180" />
+										</TextBlock.RenderTransform>
+									</TextBlock>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+				<Label Content="{Binding Player.Points}" Foreground="Black" IsVisible="{Binding !BudgetVisibility}"/>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Row="3">
+			<Slider Maximum="{Binding Player.Budget}" Value="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
+			<StackPanel Orientation="Horizontal">
+				<TextBox Text="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" ></TextBox>
+				<Button Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Save</Button>
+			</StackPanel>
+			<StackPanel VerticalAlignment="Center" Background="Gray" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
+				<Button Content="Hit" IsEnabled="{Binding ButtonEnabled}" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
+				<Button Content="Stand" IsEnabled="{Binding ButtonEnabled}" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</UserControl>

@@ -14,17 +14,17 @@ namespace BlackJack.ViewModel
             ChartData = new ObservableCollection<ISeries>{
             new LineSeries<int>
                 {
-                    Values = new int[] {}, // Budget Verlauf
+                    Values = new int[] {},
                     Name = "Budget"
                 },
                 new LineSeries<int>
                 {
-                    Values = new int[] {}, // Einsatz Verlauf
+                    Values = new int[] {},
                     Name = "Einsatz"
                 },
                 new LineSeries<int>
                 {
-                    Values = new int[] {}, // Gewinn Verlauf
+                    Values = new int[] {},
                     Name = "Gewinn"
                 }
             };
