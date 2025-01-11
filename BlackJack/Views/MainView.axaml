@@ -7,10 +7,6 @@
 			 xmlns:views="clr-namespace:BlackJack.Views;assembly=BlackJack"
 			 Background="{DynamicResource SecondaryBackground}"
              x:Class="BlackJack.Views.MainView">
-	<UserControl.Resources>
-		
-	</UserControl.Resources>
-	
 	<Design.DataContext>
 		<viewModel:MainViewModel />
 	</Design.DataContext>

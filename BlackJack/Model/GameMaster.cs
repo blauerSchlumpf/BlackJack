@@ -14,6 +14,7 @@ namespace BlackJack.Model
         int initialBudget;
         readonly ChartData chartData;
         public event Action? OnPlayerLost;        
+        public event Action? DealerDone;        
         public event Action<int, int, int> OnChartUpdate;
         public string Result { get; set; } = string.Empty;
 
@@ -82,14 +83,16 @@ namespace BlackJack.Model
             FinalValues();
         }
 
-        public void DealerMakeMove()
+        public async void DealerMakeMove()
         {
             bool moveMade = true;
             while (moveMade && !DealerTooManyCards())
             {
                 moveMade = dealer.Hit(cardSheet.PickCard());
+                await Task.Delay(500);
             }
             FindWinner();
+            DealerDone?.Invoke();
         }
 
         public void FindWinner()

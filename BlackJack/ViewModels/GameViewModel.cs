@@ -41,6 +41,7 @@ namespace BlackJack.ViewModels
             Dealer = gameMaster.dealer;
             BudgetVisibility = true;
             gameMaster.OnPlayerLost += DealersTurnCommand;
+            gameMaster.DealerDone += ShowResult;
         }
 
         public void RestartGame()
@@ -59,6 +60,7 @@ namespace BlackJack.ViewModels
             Player = gameMaster.player;
             gameMaster.ClearCards();
             gameMaster.OnPlayerLost +=DealersTurnCommand;
+            gameMaster.DealerDone += ShowResult;
         }
 
         [RelayCommand]
@@ -72,8 +74,8 @@ namespace BlackJack.ViewModels
         {
             ButtonEnabled = false;
             gameMaster.DealerMakeMove();
-            ShowResultAsync();
         }
+
 
         [RelayCommand]
         public void SetBudgetCommand()
@@ -83,7 +85,7 @@ namespace BlackJack.ViewModels
             ButtonEnabled = true;
         }
 
-        public void ShowResultAsync()
+        public void ShowResult()
         {
             var result = gameMaster.Result;
             var window = new Views.MessageBoxWindow();
