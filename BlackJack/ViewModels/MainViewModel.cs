@@ -45,7 +45,7 @@ namespace BlackJack.ViewModels
 
         void OnGameOverHandler()
         {
-            gameOver = true;
+            GameOver = true;
         }
 
         [RelayCommand]

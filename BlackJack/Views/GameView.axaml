@@ -83,7 +83,7 @@
 			<Slider Maximum="{Binding Player.Budget}" Value="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<TextBox Text="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" ></TextBox>
-				<Button Classes="primary" Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Save</Button>
+				<Button Classes="primary" IsEnabled="{Binding !GameOver}" Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Save</Button>
 			</StackPanel>
 			<StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
 				<Button Classes="primary" Content="Hit" IsEnabled="{Binding ButtonEnabled}" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>

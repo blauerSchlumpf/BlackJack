@@ -23,6 +23,8 @@ namespace BlackJack.ViewModels
         [ObservableProperty]
         bool buttonEnabled;
         [ObservableProperty]
+        bool gameOver;
+        [ObservableProperty]
         int betSliderValue;
         public GameMaster gameMaster { get; set; }
         ChartData chartData;
@@ -46,8 +48,8 @@ namespace BlackJack.ViewModels
             gameMaster.PayOut();
             if(player.Budget <= 0)
             {
+                GameOver = true;
                 OnGameOver?.Invoke();
-                return;
             }
             gameMaster = new GameMaster(chartData, Player.Budget);
             BetSliderValue = 0;
