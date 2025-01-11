@@ -17,7 +17,7 @@ namespace BlackJack.ViewModels
 {
     partial class GameViewModel : ViewModelBase
     {
-        event Action OnGameOver;
+        public event Action OnGameOver;
         [ObservableProperty]
         bool budgetVisibility;
         [ObservableProperty]

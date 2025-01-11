@@ -21,6 +21,9 @@ namespace BlackJack.ViewModels
         [ObservableProperty]
         bool statsOpened;
 
+        [ObservableProperty]
+        bool gameOver;
+
         ChartData chartData;
 
         [ObservableProperty]
@@ -31,14 +34,18 @@ namespace BlackJack.ViewModels
 
         public MainViewModel()
         {
-            
             StatsCloseIcon = (StatsOpened ? '\ue4f6' : '\ue154');
-
             chartData = new ChartData();
             chartViewModel = new ChartViewModel(chartData);
             gameViewModel = new GameViewModel(chartData);
             CurrentPage = gameViewModel;
+            gameViewModel.OnGameOver += OnGameOverHandler;
 
+        }
+
+        void OnGameOverHandler()
+        {
+            gameOver = true;
         }
 
         [RelayCommand]

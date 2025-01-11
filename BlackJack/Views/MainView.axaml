@@ -14,7 +14,7 @@
 	
 	<Grid RowDefinitions="Auto, *">
 		<ContentControl Background="{DynamicResource PrimaryBackground}" Grid.Row="1" Content="{Binding CurrentPage}"/>
-		<Button Classes="secondary" Command="{Binding RestartGameCommand}" IsVisible="{Binding }" Content="Restart Game" Margin="10"/>
+		<Button Classes="secondary" Command="{Binding RestartGameCommand}" IsVisible="{Binding StatsOpened Converter={x:Static BoolConverters.Or} ConverterParameter={Binding GameOver}}" Content="Restart Game" Margin="10"/>
 		
 		<Button Classes="transparent" HorizontalAlignment="Right" Command="{Binding ChangeViewCommand}">
 			<Label Classes="Icon" Foreground="{DynamicResource SecondaryForeground}" FontSize="25" Content="{Binding StatsCloseIcon}"/>
