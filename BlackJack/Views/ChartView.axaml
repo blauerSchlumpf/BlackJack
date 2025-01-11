@@ -6,7 +6,8 @@
 			 xmlns:viewModels="clr-namespace:BlackJack.ViewModel;assembly=BlackJack"
 			 xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              x:Class="BlackJack.Views.ChartView"
-	         x:DataType="viewModels:ChartViewModel">
+	         x:DataType="viewModels:ChartViewModel"
+			 Background="BlanchedAlmond">
 	<Design.DataContext>
 		<viewModels:ChartViewModel />
 	</Design.DataContext>

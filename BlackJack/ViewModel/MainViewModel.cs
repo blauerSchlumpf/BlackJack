@@ -9,88 +9,42 @@ using System.Collections.ObjectModel;
 using BlackJack.Model;
 using CommunityToolkit.Mvvm.Input;
 using Avalonia.Controls.ApplicationLifetimes;
+using System.Diagnostics;
 
 namespace BlackJack.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        ChartViewModel ChartViewModel { get; }
+        readonly ChartViewModel chartViewModel = new ChartViewModel();
+        readonly GameViewModel gameViewModel = new GameViewModel();
+
+        bool StatsOpened { get; set; }
 
         [ObservableProperty]
-        bool budgetVisibility;
+        [NotifyPropertyChangedFor(nameof(StatsOpened))]
+        char test;
+
         [ObservableProperty]
-        bool buttonEnabled;
-        [ObservableProperty]
-        int betSliderValue;
-        GameMaster gameMaster { get; set; } = new GameMaster(600);
-        [ObservableProperty]
-        Dealer dealer;
-        [ObservableProperty]
-        Player player;
+        ViewModelBase currentPage;
 
         public MainViewModel()
         {
-            ChartViewModel = new ChartViewModel();
-            gameMaster.OnChartUpdate += UpdateChart;
-            Player = gameMaster.player;
-            Dealer = gameMaster.dealer;
-            BudgetVisibility = true;
-            gameMaster.OnPlayerLost = () =>
-            {
-                DealersTurnCommand();
-            };
+            CurrentPage = gameViewModel;
+            Test = (StatsOpened ? '\ue4f6' : '\ue154');
         }
 
-        public void RestartGame()
-        {
-            gameMaster.PayOut();
-            gameMaster = new GameMaster(Player.Budget);
-            gameMaster.OnChartUpdate += UpdateChart;
-            BetSliderValue = 0;
-            BudgetVisibility = true;
-            ButtonEnabled = false;
-            Dealer = gameMaster.dealer;
-            Player = gameMaster.player;
-            gameMaster.ClearCards();
-            gameMaster.OnPlayerLost = () =>
-            {
-                DealersTurnCommand();
-            };
-        }
-
-        [RelayCommand]
-        public void NewCardCommand()
-        {
-            gameMaster.PlayerHit();
-        }
-
-        [RelayCommand]
-        public void DealersTurnCommand()
-        {
-            ButtonEnabled = false;
-            gameMaster.DealerMakeMove();
-            ShowResultAsync();
-        }
-
-        [RelayCommand]
-        public void SetBudgetCommand()
-        {
-            gameMaster.SetBet(BetSliderValue);
-            BudgetVisibility = false;
-            ButtonEnabled = true;
-        }
-
-        public void ShowResultAsync()
-        {
-            var result = gameMaster.Result;
-            var window = new Views.MessageBoxWindow();
-            window.DataContext = new MessageBoxViewModel(result, window, RestartGame);
-            window.Show();
-        }
-
-        public void UpdateChart(int budget, int bet, int profit)
-        {
-            ChartViewModel.UpdateChart(budget, bet, profit);
-        }
+        //[RelayCommand]
+        //public void ChangeView()
+        //{
+        //    StatsOpened = !StatsOpened;
+        //    if (StatsOpened)
+        //    {
+        //        CurrentPage = chartViewModel;
+        //    }
+        //    else
+        //    {
+        //        CurrentPage = gameViewModel;
+        //    }
+        //}
     }
 }

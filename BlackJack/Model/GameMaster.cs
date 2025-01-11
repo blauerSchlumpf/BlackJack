@@ -10,9 +10,9 @@ namespace BlackJack.Model
 {
     class GameMaster : ObservableObject
     {
-        public Action? OnPlayerLost;
         int profit;
         int initialBudget;
+        public event Action? OnPlayerLost;        
         public event Action<int, int, int> OnChartUpdate;
         public string Result { get; set; } = string.Empty;
 
@@ -62,7 +62,7 @@ namespace BlackJack.Model
         public void FinalValues()
         {
             profit = player.Budget - initialBudget;
-            OnChartUpdate.Invoke(player.Budget, player.Bet, profit);
+            OnChartUpdate?.Invoke(player.Budget, player.Bet, profit);
             player.Bet = 0;
         }
 
@@ -71,7 +71,7 @@ namespace BlackJack.Model
             player.Hit(cardSheet.PickCard());
             if (PlayerTooManyCards())
             {
-                OnPlayerLost.Invoke();
+                OnPlayerLost?.Invoke();
             }
         }
         public void PayOut()

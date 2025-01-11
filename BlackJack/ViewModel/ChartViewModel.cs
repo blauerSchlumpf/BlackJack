@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BlackJack.ViewModel
 {
-    public class ChartViewModel
+    class ChartViewModel : ViewModelBase
     {
         public ObservableCollection<ISeries> ChartData { get; set; }
 
