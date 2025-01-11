@@ -4,59 +4,54 @@
     <Border Padding="20">
       <!-- Add Controls for Previewer Here -->
       <Grid >
-		  <TextBlock FontFamily="{DynamicResource PhosphorFill}" Text="&#xe1ec;"></TextBlock>
+		  <Slider MaxWidth="100"></Slider>
       </Grid>
     </Border>
   </Design.PreviewWith>
 
   <!-- Add Styles Here -->
   <Style Selector="Label.Icon">
-    <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
+    <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"/>
   </Style>
 
   <Style Selector="Label.IconFill">
-    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
+    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"/>
   </Style>
 
-  <!--<Style Selector="Label.Herz">
-    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-    <Setter Property="Foreground" Value="Red"></Setter>
-    <Setter Property="Content" Value="&#xe2a8;"></Setter>
-  </Style>
-  
-  <Style Selector="Label.Karo">
-    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-    <Setter Property="Foreground" Value="Red"></Setter>
-    <Setter Property="Content" Value="&#xe1ec;"></Setter>
-  </Style>
-
-  <Style Selector="Label.Pik">
-    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-    <Setter Property="Foreground" Value="Black"></Setter>
-    <Setter Property="Content" Value="&#xe448;"></Setter>
-  </Style>
-
-  <Style Selector="Label.Kreuz">
-    <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-    <Setter Property="Foreground" Value="Black"></Setter>
-    <Setter Property="Content" Value="&#xe1ba;"></Setter>
-  </Style>-->
-  
+	<Style Selector="Slider">
+		<Setter Property="Background" Value="{DynamicResource PrimaryForeground}" />
+		<!--<Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}" />-->
+		<!--<Setter Property="Thumb" Value="{DynamicResource PrimaryForeground}" />-->		
+	</Style>
+	
   <Style Selector="Button.transparent">
     <Setter Property="Background" Value="Transparent"></Setter>
     <Setter Property="Opacity" Value="10"></Setter>
   </Style>
 
+   <Style Selector="Button.secondary">
+    <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"/>
+	<Setter Property="Foreground" Value="{DynamicResource SecondaryForeground}"/>
+   </Style>
 
-  <Style Selector="Button.transparent:pointerover /template/ ContentPresenter">
-    <Setter Property="Background" Value="Transparent"></Setter>
+   <Style Selector="Button.primary">
+   	<Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+   	<Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+   </Style>
+
+	<Style Selector="Button:pointerover /template/ContentPresenter">
+		<Setter Property="Opacity" Value="0.5" />
+	</Style>
+
+  <Style Selector="Button.transparent:pointerover /template/ContentPresenter">
+    <Setter Property="Background" Value="Transparent"/>
   </Style>
   
   <Style Selector="Button.transparent Label">
-    <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+    <Setter Property="RenderTransform" Value="scale(1)"/>
   </Style>
 
   <Style Selector="Button.transparent:pointerover Label">
-    <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+    <Setter Property="RenderTransform" Value="scale(1.1)"/>
   </Style>
 </Styles>

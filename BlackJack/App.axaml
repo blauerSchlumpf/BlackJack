@@ -15,10 +15,18 @@
 	</Application.Styles>
 
 	<Application.Resources>
+		
+		<SolidColorBrush x:Key="SecondaryForeground">#ffA3BE8C</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryBackground">#ff1E1E2E</SolidColorBrush>
+		
+		<SolidColorBrush x:Key="PrimaryForeground">#ff88C0D0</SolidColorBrush>
+		<SolidColorBrush x:Key="SecondaryBackground">#ff2E3440</SolidColorBrush>
 
 		<FontFamily x:Key="Phosphor">Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
 		<FontFamily x:Key="PhosphorFill">Assets/Fonts/Phosphor-Fill.ttf#Phosphor-Fill</FontFamily>
 		<FontFamily x:Key="PhosphorDuotone">Assets/Fonts/Phosphor-Duotone.ttf#Phosphor-Duotone</FontFamily>
+		
+		<BoolConverter.And x:Key="AndConverter" />
 
 
 	</Application.Resources>

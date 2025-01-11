@@ -3,19 +3,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 xmlns:viewModels="clr-namespace:BlackJack.ViewModel"
-             x:Class="BlackJack.Views.GameView"
-			 Background="Aquamarine">
-				
+			 xmlns:viewModel="clr-namespace:BlackJack.ViewModels"
+             x:Class="BlackJack.Views.GameView">
+
 
 	<Design.DataContext>
-		<viewModels:GameViewModel />
+		<viewModel:GameViewModel />
 	</Design.DataContext>
-	
+
 	<Grid RowDefinitions="auto, *,*, auto">
 		<Grid Grid.Row="0" ColumnDefinitions="*, auto">
-			<Label Grid.Column="0" Foreground="Black" Content="{Binding Player.Budget, StringFormat = Budget: {0:C}}"></Label>
-			<Label Grid.Column="1" Foreground="Black" Content="{Binding Player.Bet, StringFormat = Bet: {0:C}}"></Label>
+			<Label Grid.Column="0" Foreground="{DynamicResource PrimaryForeground}" Content="{Binding Player.Budget, StringFormat = Budget: {0:C}}"></Label>
+			<Label Grid.Column="1" Foreground="{DynamicResource PrimaryForeground}" Content="{Binding Player.Bet, StringFormat = Bet: {0:C}}"></Label>
 		</Grid>
 		<StackPanel Grid.Row="1">
 			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Orientation="Horizontal">
@@ -44,7 +43,7 @@
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
-				<Label FontFamily="Helvetica" Content="{Binding Dealer.Points}" Foreground="Black" IsVisible="{Binding !BudgetVisibility}"></Label>
+				<Label FontFamily="Helvetica" Content="{Binding Dealer.Points}" Foreground="{DynamicResource PrimaryForeground}" IsVisible="{Binding !BudgetVisibility}"></Label>
 			</StackPanel>
 		</StackPanel>
 
@@ -77,18 +76,18 @@
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
-				<Label Content="{Binding Player.Points}" Foreground="Black" IsVisible="{Binding !BudgetVisibility}"/>
+				<Label Content="{Binding Player.Points}" Foreground="{DynamicResource PrimaryForeground}" IsVisible="{Binding !BudgetVisibility}"/>
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.Row="3">
 			<Slider Maximum="{Binding Player.Budget}" Value="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
-			<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<TextBox Text="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" ></TextBox>
-				<Button Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Save</Button>
+				<Button Classes="primary" Background="Red" Command="{Binding SetBudgetCommand}" IsVisible="{Binding BudgetVisibility}">Save</Button>
 			</StackPanel>
-			<StackPanel VerticalAlignment="Center" Background="Gray" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
-				<Button Content="Hit" IsEnabled="{Binding ButtonEnabled}" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
-				<Button Content="Stand" IsEnabled="{Binding ButtonEnabled}" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
+			<StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
+				<Button Classes="primary" Content="Hit" IsEnabled="{Binding ButtonEnabled}" Command="{Binding NewCardCommand}" Width="150" Height="40" Margin="0 0 5 0"/>
+				<Button Classes="primary" Content="Stand" IsEnabled="{Binding ButtonEnabled}" Command="{Binding DealersTurnCommand}" Width="150" Height="40" Margin="5 0 0 0"/>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

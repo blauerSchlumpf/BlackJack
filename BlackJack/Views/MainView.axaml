@@ -3,21 +3,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 xmlns:viewModels="clr-namespace:BlackJack.ViewModel;assembly=BlackJack"
+			 xmlns:viewModel="clr-namespace:BlackJack.ViewModels;assembly=BlackJack"
 			 xmlns:views="clr-namespace:BlackJack.Views;assembly=BlackJack"
-			 Background="Beige"
+			 Background="{DynamicResource SecondaryBackground}"
              x:Class="BlackJack.Views.MainView">
 	
 	<Design.DataContext>
-		<viewModels:MainViewModel />
+		<viewModel:MainViewModel />
 	</Design.DataContext>
 	
 	<Grid RowDefinitions="Auto, *">
-		<ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
+		<ContentControl Background="{DynamicResource PrimaryBackground}" Grid.Row="1" Content="{Binding CurrentPage}"/>
+		<Button Classes="secondary" Command="{Binding RestartGameCommand}" IsVisible="{Binding }" Content="Restart Game" Margin="10"/>
 		
-		
-		<Button Grid.Column="0" Classes="transparent" HorizontalAlignment="Right" Command="{Binding ChangeViewCommand}">
-			<Label Classes="Icon" Foreground="ForestGreen" FontSize="25" Content="{Binding Test}"/>
+		<Button Classes="transparent" HorizontalAlignment="Right" Command="{Binding ChangeViewCommand}">
+			<Label Classes="Icon" Foreground="{DynamicResource SecondaryForeground}" FontSize="25" Content="{Binding StatsCloseIcon}"/>
 		</Button>
 	</Grid>
 </UserControl>

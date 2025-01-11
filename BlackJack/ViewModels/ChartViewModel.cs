@@ -1,45 +1,36 @@
-﻿using LiveChartsCore;
+﻿using BlackJack.ViewModels;
+using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using System.Collections.ObjectModel;
-using System.Linq;
-
-namespace BlackJack.ViewModels
+namespace BlackJack.ViewModels;
+public class ChartViewModel : ViewModelBase
 {
-    class ChartViewModel : ViewModelBase
+    private readonly ChartData data;
+
+    public ObservableCollection<ISeries> ChartData { get; }
+
+    public ChartViewModel(ChartData dataProvider)
     {
-        public ObservableCollection<ISeries> ChartData { get; set; }
+        data = dataProvider;
 
-        public ChartViewModel() 
+        // Binde die Daten an die Chart-Serien
+        ChartData = new ObservableCollection<ISeries>
         {
-            ChartData = new ObservableCollection<ISeries>{
             new LineSeries<int>
-                {
-                    Values = new int[] {},
-                    Name = "Budget"
-                },
-                new LineSeries<int>
-                {
-                    Values = new int[] {},
-                    Name = "Einsatz"
-                },
-                new LineSeries<int>
-                {
-                    Values = new int[] {},
-                    Name = "Gewinn"
-                }
-            };
-        }
-
-        public void UpdateChart(int budget, int bet, int profit)
-        {
-            var budgetSeries = (LineSeries<int>)ChartData.First(s => s.Name == "Budget");
-            budgetSeries.Values = budgetSeries.Values.Append(budget).ToList();
-
-            var betSeries = (LineSeries<int>)ChartData.First(s => s.Name == "Einsatz");
-            betSeries.Values = betSeries.Values.Append(bet).ToList();
-
-            var profitSeries = (LineSeries<int>)ChartData.First(s => s.Name == "Gewinn");
-            profitSeries.Values = profitSeries.Values.Append(profit).ToList();
-        }
+            {
+                Values = data.BudgetData,
+                Name = "Budget"
+            },
+            new LineSeries<int>
+            {
+                Values = data.BetData,
+                Name = "Einsatz"
+            },
+            new LineSeries<int>
+            {
+                Values = data.ProfitData,
+                Name = "Gewinn"
+            }
+        };
     }
-}   
+}

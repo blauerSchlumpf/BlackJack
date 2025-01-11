@@ -11,25 +11,30 @@ using System.Collections.ObjectModel;
 using BlackJack.Model;
 using CommunityToolkit.Mvvm.Input;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Media.TextFormatting.Unicode;
 
 namespace BlackJack.ViewModels
 {
     partial class GameViewModel : ViewModelBase
     {
+        event Action OnGameOver;
         [ObservableProperty]
         bool budgetVisibility;
         [ObservableProperty]
         bool buttonEnabled;
         [ObservableProperty]
         int betSliderValue;
-        GameMaster gameMaster { get; set; } = new GameMaster(600);
+        public GameMaster gameMaster { get; set; }
+        ChartData chartData;
         [ObservableProperty]
         Dealer dealer;
         [ObservableProperty]
         Player player;
 
-        public GameViewModel()
+        public GameViewModel(ChartData chartData)
         {
+            this.chartData = chartData;
+            gameMaster = new GameMaster(chartData, 600);
             Player = gameMaster.player;
             Dealer = gameMaster.dealer;
             BudgetVisibility = true;
@@ -39,7 +44,12 @@ namespace BlackJack.ViewModels
         public void RestartGame()
         {
             gameMaster.PayOut();
-            gameMaster = new GameMaster(Player.Budget);
+            if(player.Budget <= 0)
+            {
+                OnGameOver?.Invoke();
+                return;
+            }
+            gameMaster = new GameMaster(chartData, Player.Budget);
             BetSliderValue = 0;
             BudgetVisibility = true;
             ButtonEnabled = false;

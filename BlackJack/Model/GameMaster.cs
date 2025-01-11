@@ -12,6 +12,7 @@ namespace BlackJack.Model
     {
         int profit;
         int initialBudget;
+        readonly ChartData chartData;
         public event Action? OnPlayerLost;        
         public event Action<int, int, int> OnChartUpdate;
         public string Result { get; set; } = string.Empty;
@@ -27,8 +28,9 @@ namespace BlackJack.Model
             set => SetProperty(ref canMakeMove, value);
         }
         double winIndicator;
-        public GameMaster(int playerBudget)
+        public GameMaster(ChartData chartData, int playerBudget)
         {
+            this.chartData = chartData;
             initialBudget = playerBudget;
             winIndicator = 5.0;
             cardSheet = new CardSheet();
@@ -61,8 +63,8 @@ namespace BlackJack.Model
 
         public void FinalValues()
         {
-            profit = player.Budget - initialBudget;
-            OnChartUpdate?.Invoke(player.Budget, player.Bet, profit);
+            int profit = player.Budget - initialBudget;
+            chartData.AddDataPoint(player.Budget, player.Bet, profit);
             player.Bet = 0;
         }
 

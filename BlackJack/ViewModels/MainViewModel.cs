@@ -15,21 +15,30 @@ namespace BlackJack.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        readonly ChartViewModel chartViewModel = new ChartViewModel();
-        readonly GameViewModel gameViewModel = new GameViewModel();
-
-        bool StatsOpened { get; set; }
+        ChartViewModel chartViewModel;
+        GameViewModel gameViewModel;
 
         [ObservableProperty]
-        char test;
+        bool statsOpened;
+
+        ChartData chartData;
+
+        [ObservableProperty]
+        char statsCloseIcon;
 
         [ObservableProperty]
         ViewModelBase currentPage;
 
         public MainViewModel()
         {
+            
+            StatsCloseIcon = (StatsOpened ? '\ue4f6' : '\ue154');
+
+            chartData = new ChartData();
+            chartViewModel = new ChartViewModel(chartData);
+            gameViewModel = new GameViewModel(chartData);
             CurrentPage = gameViewModel;
-            Test = (StatsOpened ? '\ue4f6' : '\ue154');
+
         }
 
         [RelayCommand]
@@ -44,7 +53,16 @@ namespace BlackJack.ViewModels
             {
                 CurrentPage = gameViewModel;
             }
-            Test = (StatsOpened ? '\ue4f6' : '\ue154');
+            StatsCloseIcon = (StatsOpened ? '\ue4f6' : '\ue154');
+        }
+
+        [RelayCommand]
+        void RestartGame()
+        {
+            chartData = new ChartData();
+            chartViewModel = new ChartViewModel(chartData);
+            gameViewModel = new GameViewModel(chartData);
+            CurrentPage = gameViewModel;
         }
     }
 }
