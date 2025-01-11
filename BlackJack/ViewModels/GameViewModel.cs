@@ -11,9 +11,8 @@ using System.Collections.ObjectModel;
 using BlackJack.Model;
 using CommunityToolkit.Mvvm.Input;
 using Avalonia.Controls.ApplicationLifetimes;
-using BlackJack.ViewModel;
 
-namespace BlackJack.ViewModel
+namespace BlackJack.ViewModels
 {
     partial class GameViewModel : ViewModelBase
     {

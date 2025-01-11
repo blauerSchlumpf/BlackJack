@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using BlackJack.Views;
-using BlackJack.ViewModel;
+using BlackJack.ViewModels;
 
 namespace BlackJack
 {
@@ -20,7 +20,7 @@ namespace BlackJack
             {
                 desktop.MainWindow = new MainWindow()
                 {
-                    DataContext = new MainViewModel(),
+                    DataContext = new MainViewModel()
                 };
             }
 

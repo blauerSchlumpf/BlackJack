@@ -6,8 +6,8 @@
 			 xmlns:viewModels="clr-namespace:BlackJack.ViewModel;assembly=BlackJack"
 			 xmlns:views="clr-namespace:BlackJack.Views;assembly=BlackJack"
 			 Background="Beige"
-
              x:Class="BlackJack.Views.MainView">
+	
 	<Design.DataContext>
 		<viewModels:MainViewModel />
 	</Design.DataContext>
@@ -16,7 +16,7 @@
 		<ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
 		
 		
-		<Button Grid.Column="0" Classes="transparent" HorizontalAlignment="Right">
+		<Button Grid.Column="0" Classes="transparent" HorizontalAlignment="Right" Command="{Binding ChangeViewCommand}">
 			<Label Classes="Icon" Foreground="ForestGreen" FontSize="25" Content="{Binding Test}"/>
 		</Button>
 	</Grid>

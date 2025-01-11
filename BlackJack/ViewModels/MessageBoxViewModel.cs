@@ -1,9 +1,10 @@
 ﻿using Avalonia.Controls;
-using BlackJack.ViewModel;
+using BlackJack.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 
+namespace BlackJack.ViewModels;
 public partial class MessageBoxViewModel
 {
     public string Message { get; }

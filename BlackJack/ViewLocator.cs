@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using BlackJack.ViewModel;
+using BlackJack.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +18,18 @@ namespace BlackJack
             {
                 return null;
             }
-            var viewName = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.InvariantCulture);
+
+            var viewName = data.GetType().FullName?.Replace("ViewModel", "View");
             var type = Type.GetType(viewName);
 
-            if(type is null)
+            if (type != null)
+            {
+                return (Control)Activator.CreateInstance(type)!;
+            }
+            else
             {
                 return null;
             }
-
-            var control = (Control)Activator.CreateInstance(type)!;
-            control.DataContext = data;
-            return control;
         }
 
         public bool Match(object? data) => data is ViewModelBase;

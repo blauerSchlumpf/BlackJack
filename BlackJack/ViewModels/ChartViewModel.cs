@@ -3,7 +3,7 @@ using LiveChartsCore.SkiaSharpView;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace BlackJack.ViewModel
+namespace BlackJack.ViewModels
 {
     class ChartViewModel : ViewModelBase
     {

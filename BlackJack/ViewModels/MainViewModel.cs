@@ -11,7 +11,7 @@ using CommunityToolkit.Mvvm.Input;
 using Avalonia.Controls.ApplicationLifetimes;
 using System.Diagnostics;
 
-namespace BlackJack.ViewModel
+namespace BlackJack.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
@@ -21,7 +21,6 @@ namespace BlackJack.ViewModel
         bool StatsOpened { get; set; }
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(StatsOpened))]
         char test;
 
         [ObservableProperty]
@@ -33,18 +32,19 @@ namespace BlackJack.ViewModel
             Test = (StatsOpened ? '\ue4f6' : '\ue154');
         }
 
-        //[RelayCommand]
-        //public void ChangeView()
-        //{
-        //    StatsOpened = !StatsOpened;
-        //    if (StatsOpened)
-        //    {
-        //        CurrentPage = chartViewModel;
-        //    }
-        //    else
-        //    {
-        //        CurrentPage = gameViewModel;
-        //    }
-        //}
+        [RelayCommand]
+        void ChangeView()
+        {
+            StatsOpened = !StatsOpened;
+            if (StatsOpened)
+            {
+                CurrentPage = chartViewModel;
+            }
+            else
+            {
+                CurrentPage = gameViewModel;
+            }
+            Test = (StatsOpened ? '\ue4f6' : '\ue154');
+        }
     }
 }

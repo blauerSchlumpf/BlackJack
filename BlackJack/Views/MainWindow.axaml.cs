@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using BlackJack.Model;
 using Microsoft.VisualBasic;
 using System.Collections.ObjectModel;
+using BlackJack.ViewModels;
 
 namespace BlackJack.Views
 {
