@@ -1,23 +1,13 @@
 ﻿using BlackJack.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
-using BlackJack.Model;
 using CommunityToolkit.Mvvm.Input;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Media.TextFormatting.Unicode;
+using System;
 
 namespace BlackJack.ViewModels
 {
     partial class GameViewModel : ViewModelBase
     {
-        public event Action OnGameOver;
+        public event Action? OnGameOver;
         [ObservableProperty]
         bool budgetVisibility;
         [ObservableProperty]

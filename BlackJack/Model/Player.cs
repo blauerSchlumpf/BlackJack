@@ -1,10 +1,8 @@
-﻿using Avalonia;
-using System.ComponentModel;
-using BlackJack.Model;
+﻿using BlackJack.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 
-public class Player : ObservableObject, IPlayerDealer
+public class Player : ObservableObject
 {
 
     public ObservableCollection<Card> Sheet { get; set; } = new ObservableCollection<Card>();
