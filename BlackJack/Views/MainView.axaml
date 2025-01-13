@@ -21,7 +21,6 @@
 				</MultiBinding>
 			</Button.IsVisible>
 		</Button>
-    <Button HorizontalAlignment="Center" Command="{Binding GetResultsCommand}">Get Results</Button>
     <TextBlock Text="{Binding Username}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
 		<Button Classes="transparent" IsVisible="{Binding HasGameStarted}" HorizontalAlignment="Right" Command="{Binding ChangeViewCommand}">
 			<Label Classes="Icon" Foreground="{DynamicResource SecondaryForeground}" FontSize="25" Content="{Binding StatsCloseIcon}"/>

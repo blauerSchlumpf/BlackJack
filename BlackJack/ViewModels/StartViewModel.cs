@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Text.Json.Nodes;
@@ -17,38 +16,42 @@ using Avalonia.Controls;
 namespace BlackJack.ViewModels;
 public partial class StartViewModel : ViewModelBase
 {
-    public event Action<string>? OnStartGame;
+    public event Action<string> OnStartGame;
+    public event Action Test;
+
+
     [ObservableProperty]
     string username;
 
     [ObservableProperty]
     bool isUsernameValid;
 
-    [ObservableProperty]
-    string hUHU;
-
-    JsonArray Results;
-
-    [ObservableProperty]
-    ObservableCollection<LeaderboardData> leaderboardDatas = new ObservableCollection<LeaderboardData>();
-
+    public ObservableCollection<LeaderboardData> LeaderboardDatas { get; } = new ObservableCollection<LeaderboardData>();
     public StartViewModel()
     {
-        HUHU = "HUHU";
-        Test();
+        GetResults();
     }
 
     async void GetResults()
     {
-        //JsonArray Results = await ApiController.GetResults();
-        //LeaderboardDatas = JsonConvert.DeserializeObject<ObservableCollection<LeaderboardData>>(Results.ToString());
-        
-    }
+        JsonArray results = await ApiController.GetResults();
 
-    public void Test()
-    {
-        LeaderboardDatas.Add(new LeaderboardData { username = "Test", budget = 1000, games_won = 0, games_lost = 0, success_rate = 0 });
-        HUHU = LeaderboardDatas[0].username;
+        if(results != null)
+        {
+            foreach (var item in results)
+            {
+                var jsonElement = item as JsonObject;
+                if(jsonElement != null)
+                {
+                    //LeaderboardData leaderboardData = JsonConvert.DeserializeObject<LeaderboardData>(jsonElement);
+                    var data = JsonConvert.DeserializeObject<LeaderboardData>(jsonElement.ToString());
+                    if (data != null)
+                    {
+                        LeaderboardDatas.Add(data);
+                    }
+                }
+            }
+        }
     }
 
     partial void OnUsernameChanged(string value)
@@ -64,7 +67,7 @@ public partial class StartViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    void StartGame()
+    public void StartGame()
     {
         OnStartGame?.Invoke(Username);
     }

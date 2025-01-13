@@ -14,10 +14,12 @@
     <TextBlock Text="Welcome to BlackJack!" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     <TextBox Watermark="Enter Username" Text="{Binding Username}" MaxWidth="200" Margin="10"></TextBox>
     <Button Content="Start" HorizontalAlignment="Center" Command="{Binding StartGameCommand}" IsEnabled="{Binding IsUsernameValid}"/>
-    <Grid Background="Green">
-      <TextBlock Text="{Binding LeaderboardDatas.Count}"></TextBlock>
-      <DataGrid Width="100" Height="100" ItemsSource="{Binding LeaderboardDatas}" AutoGenerateColumns="True" Background="White" Foreground="Black"/>
-    </Grid>
     
+    <Grid Background="{DynamicResource ScondaryBackground}" HorizontalAlignment="Center" Margin="10" ColumnDefinitions="auto">
+      <StackPanel>
+        <TextBlock Text="Leaderboard" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,0,0,10" />
+        <DataGrid ItemsSource="{Binding LeaderboardDatas}"  AutoGenerateColumns="True" IsReadOnly="True" GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray" />
+      </StackPanel>
+    </Grid>
   </StackPanel>
 </UserControl>

@@ -8,10 +8,19 @@ namespace BlackJack.Model
 {
     public class LeaderboardData
     {
-        public string username;
-        public int budget;
-        public int games_won;
-        public int games_lost;
-        public double success_rate;
+        public string Username { get; set; }
+        public int Budget { get; set; }
+        public int Games_won { get; set; }
+        public int Games_lost { get; set; }
+        public double Success_rate { get; set; }
+
+        public LeaderboardData(string username, int budget, int games_won, int games_lost, double success_rate)
+        {
+            Username = username;
+            Budget = budget;
+            Games_won = games_won;
+            Games_lost = games_lost;
+            Success_rate = success_rate;
+        }
     }
 }
