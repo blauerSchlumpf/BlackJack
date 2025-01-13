@@ -49,7 +49,6 @@ namespace BlackJack.ViewModels
             startViewModel = new StartViewModel();
             startViewModel.OnStartGame += OnStartGame;
             gameViewModel.OnGameOver += OnGameOver;
-            startViewModel.Test += () => HasGameStarted = true;
             CurrentPage = startViewModel;
         }
 

@@ -16,8 +16,7 @@ using Avalonia.Controls;
 namespace BlackJack.ViewModels;
 public partial class StartViewModel : ViewModelBase
 {
-    public event Action<string> OnStartGame;
-    public event Action Test;
+    public event Action<string>? OnStartGame;
 
 
     [ObservableProperty]
@@ -67,7 +66,7 @@ public partial class StartViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    public void StartGame()
+    void StartGame()
     {
         OnStartGame?.Invoke(Username);
     }
