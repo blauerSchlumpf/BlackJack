@@ -25,7 +25,9 @@ namespace BlackJack.ViewModels
             set
             {
                 SetProperty(ref _betInputText, value);
+
                 IsBetValid = int.TryParse(value, out var result);
+
                 if (IsBetValid)
                 {
                     BetSliderValue = result;
@@ -68,6 +70,11 @@ namespace BlackJack.ViewModels
             gameMaster.ClearCards();
             gameMaster.OnPlayerLost +=DealersTurnCommand;
             gameMaster.DealerDone += ShowResult;
+        }
+
+        partial void OnBetSliderValueChanged(int value)
+        {
+            BetInputText = BetSliderValue.ToString();
         }
 
         [RelayCommand]

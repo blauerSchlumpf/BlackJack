@@ -77,7 +77,7 @@
 		<StackPanel Grid.Row="3">
 			<Slider Maximum="{Binding Player.Budget}" Value="{Binding BetSliderValue}" IsVisible="{Binding BudgetVisibility}" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<TextBox Text="{Binding BetInputText}" IsVisible="{Binding BudgetVisibility}" ></TextBox>
+				<TextBox Watermark="Bet" Text="{Binding BetInputText}" IsVisible="{Binding BudgetVisibility}" ></TextBox>
 				<Button Classes="budget" IsVisible="{Binding BudgetVisibility}" Command="{Binding SetBudgetCommand}" Content="Save">
 					<Button.IsEnabled>
 						<MultiBinding Converter="{x:Static BoolConverters.And}">
