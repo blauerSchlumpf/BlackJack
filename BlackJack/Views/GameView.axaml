@@ -4,7 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:viewModel="clr-namespace:BlackJack.ViewModels"
+			 
              x:Class="BlackJack.Views.GameView">
+
+	
+	<UserControl.Background>
+		<ImageBrush Source="avares://BlackJack/Assets/Images/Table.png" Stretch="UniformToFill"/>
+	</UserControl.Background>
 
 	<Grid RowDefinitions="auto, *,*, auto">
 		<Grid Grid.Row="0" ColumnDefinitions="*, auto">
@@ -73,13 +79,13 @@
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<TextBox Text="{Binding BetInputText}" IsVisible="{Binding BudgetVisibility}" ></TextBox>
 				<Button Classes="budget" IsVisible="{Binding BudgetVisibility}" Command="{Binding SetBudgetCommand}" Content="Save">
-          <Button.IsEnabled>
-            <MultiBinding Converter="{x:Static BoolConverters.And}">
-              <Binding Path="GameOver" Converter="{x:Static BoolConverters.Not}"/>
-              <Binding Path="IsBetValid"/>
-            </MultiBinding>
-          </Button.IsEnabled>
-        </Button>
+					<Button.IsEnabled>
+						<MultiBinding Converter="{x:Static BoolConverters.And}">
+							<Binding Path="GameOver" Converter="{x:Static BoolConverters.Not}"/>
+							<Binding Path="IsBetValid"/>
+						</MultiBinding>
+					</Button.IsEnabled>
+				</Button>
 				<Button Classes="budget" IsEnabled="{Binding !GameOver}" IsVisible="{Binding BudgetVisibility}" Command="{Binding AllInCommand}">All In</Button>
 			</StackPanel>
 			<StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="10">
