@@ -16,6 +16,22 @@ namespace BlackJack.ViewModels
         bool gameOver;
         [ObservableProperty]
         int betSliderValue;
+        [ObservableProperty]
+        bool isBetValid;
+        private string _betInputText;
+        public string BetInputText
+        {
+            get => _betInputText;
+            set
+            {
+                SetProperty(ref _betInputText, value);
+                IsBetValid = int.TryParse(value, out var result);
+                if (IsBetValid)
+                {
+                    BetSliderValue = result;
+                }
+            }
+        }
         public GameMaster gameMaster { get; set; }
         ChartData chartData;
         [ObservableProperty]
@@ -44,6 +60,7 @@ namespace BlackJack.ViewModels
             }
             gameMaster = new GameMaster(chartData, Player.Budget);
             BetSliderValue = 0;
+            BetInputText = string.Empty;
             BudgetVisibility = true;
             ButtonEnabled = false;
             Dealer = gameMaster.dealer;
