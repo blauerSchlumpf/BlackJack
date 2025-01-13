@@ -18,6 +18,7 @@ namespace BlackJack.ViewModels
         int betSliderValue;
         [ObservableProperty]
         bool isBetValid;
+        Result result;
         private string _betInputText;
         public string BetInputText
         {
@@ -41,15 +42,17 @@ namespace BlackJack.ViewModels
         [ObservableProperty]
         Player? player;
 
-        public GameViewModel(ChartData chartData)
+        public GameViewModel(ChartData chartData, Result result)
         {
+            this.result = result;
             this.chartData = chartData;
-            gameMaster = new GameMaster(chartData, 600);
+            gameMaster = new GameMaster(chartData, 1000, result);
             Player = gameMaster.player;
             Dealer = gameMaster.dealer;
             BudgetVisibility = true;
             gameMaster.OnPlayerLost += DealersTurnCommand;
             gameMaster.DealerDone += ShowResult;
+            //BetTextBox.Focus();
         }
 
         public void RestartGame()
@@ -60,7 +63,7 @@ namespace BlackJack.ViewModels
                 GameOver = true;
                 OnGameOver?.Invoke();
             }
-            gameMaster = new GameMaster(chartData, Player.Budget);
+            gameMaster = new GameMaster(chartData, Player.Budget, result);
             BetSliderValue = 0;
             BetInputText = string.Empty;
             BudgetVisibility = true;

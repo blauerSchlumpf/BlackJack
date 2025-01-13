@@ -17,7 +17,9 @@ namespace BlackJack.ViewModels
     {
         ChartViewModel chartViewModel;
         GameViewModel gameViewModel;
+        StartViewModel startViewModel;
         ChartData chartData;
+        Result result;
 
         [ObservableProperty]
         bool gameOver;
@@ -31,15 +33,31 @@ namespace BlackJack.ViewModels
         [ObservableProperty]
         ViewModelBase currentPage;
 
+        [ObservableProperty]
+        bool hasGameStarted;
+
+        [ObservableProperty]
+        string username;
+
         public MainViewModel()
         {
+            result = new Result();
             StatsCloseIcon = '\ue154';
             chartData = new ChartData();
             chartViewModel = new ChartViewModel(chartData);
-            gameViewModel = new GameViewModel(chartData);
-            CurrentPage = gameViewModel;
+            gameViewModel = new GameViewModel(chartData, result);
+            startViewModel = new StartViewModel();
+            CurrentPage = startViewModel;
             gameViewModel.OnGameOver += OnGameOverHandler;
+            startViewModel.OnStartGame += OnStartGame;
+        }
 
+        void OnStartGame(string username)
+        {
+            Username = username;
+            result.Username = Username;            
+            CurrentPage = gameViewModel;
+            HasGameStarted = true;
         }
 
         partial void OnStatsOpenedChanged(bool value)
@@ -73,8 +91,14 @@ namespace BlackJack.ViewModels
             StatsOpened = false;
             chartData = new ChartData();
             chartViewModel = new ChartViewModel(chartData);
-            gameViewModel = new GameViewModel(chartData);
+            gameViewModel = new GameViewModel(chartData, result);
             CurrentPage = gameViewModel;
+        }
+
+        [RelayCommand]
+        async Task GetResults()
+        {
+            await ApiController.GetResults();
         }
     }
 }

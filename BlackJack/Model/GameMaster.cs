@@ -10,12 +10,13 @@ class GameMaster : ObservableObject
     readonly ChartData chartData;
     public event Action? OnPlayerLost;
     public event Action? DealerDone;
-    public event Action<int, int, int>? OnChartUpdate;
     public string Result { get; set; } = string.Empty;
 
     public Player player;
     public Dealer dealer;
     public CardSheet cardSheet;
+
+    Result result;
 
     bool canMakeMove;
     public bool CanMakeMove
@@ -24,8 +25,9 @@ class GameMaster : ObservableObject
         set => SetProperty(ref canMakeMove, value);
     }
     double winIndicator;
-    public GameMaster(ChartData chartData, int playerBudget)
+    public GameMaster(ChartData chartData, int playerBudget, Result result)
     {
+        this.result = result;
         this.chartData = chartData;
         initialBudget = playerBudget;
         winIndicator = 5.0; // Default value, will be overwritten, no winner yet
@@ -189,7 +191,11 @@ class GameMaster : ObservableObject
     {
         int profit = player.Budget - initialBudget;
         chartData.AddDataPoint(player.Budget, player.Bet, profit);
+        result.Budget = player.Budget;
+        result.Bet = player.Bet;
+        result.WinIndicator = Convert.ToInt32(winIndicator);
         player.Bet = 0;
+        ApiController.SendResult(result);
     }
 
     public void ClearCards()
