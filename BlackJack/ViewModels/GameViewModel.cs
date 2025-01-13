@@ -19,9 +19,9 @@ namespace BlackJack.ViewModels
         public GameMaster gameMaster { get; set; }
         ChartData chartData;
         [ObservableProperty]
-        Dealer dealer;
+        Dealer? dealer;
         [ObservableProperty]
-        Player player;
+        Player? player;
 
         public GameViewModel(ChartData chartData)
         {
@@ -37,7 +37,7 @@ namespace BlackJack.ViewModels
         public void RestartGame()
         {
             gameMaster.PayOut();
-            if(player.Budget <= 0)
+            if(Player.Budget <= 0)
             {
                 GameOver = true;
                 OnGameOver?.Invoke();
@@ -54,7 +54,7 @@ namespace BlackJack.ViewModels
         }
 
         [RelayCommand]
-        public void NewCardCommand()
+        public void NewCard()
         {
             gameMaster.PlayerHit();
         }
@@ -68,9 +68,17 @@ namespace BlackJack.ViewModels
 
 
         [RelayCommand]
-        public void SetBudgetCommand()
+        public void SetBudget()
         {
             gameMaster.SetBet(BetSliderValue);
+            BudgetVisibility = false;
+            ButtonEnabled = true;
+        }
+
+        [RelayCommand]
+        public void AllIn()
+        {
+            gameMaster.SetBet(Player.Budget);
             BudgetVisibility = false;
             ButtonEnabled = true;
         }

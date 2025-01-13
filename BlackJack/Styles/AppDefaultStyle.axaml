@@ -4,7 +4,7 @@
     <Border Padding="20">
       <!-- Add Controls for Previewer Here -->
       <Grid >
-		  <Slider MaxWidth="100"></Slider>
+        <Button Classes="budget">test</Button>
       </Grid>
     </Border>
   </Design.PreviewWith>
@@ -20,23 +20,31 @@
 
 	<Style Selector="Slider">
 		<Setter Property="Background" Value="{DynamicResource PrimaryForeground}" />
-		<!--<Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}" />-->
-		<!--<Setter Property="Thumb" Value="{DynamicResource PrimaryForeground}" />-->		
 	</Style>
+
+  <Style Selector="Button">
+    <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+    <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+  </Style>
+  
+  <Style Selector="Button.budget">
+    <Setter Property="Background" Value="#D9534F" />
+    <Setter Property="Foreground" Value="#FFFFFF" />
+  </Style>
+
+  <Style Selector="Button.budget:pointerover">
+    <Setter Property="Background" Value="#E57373" />
+    <Setter Property="Foreground" Value="#FFFFFF" />
+  </Style>
 	
   <Style Selector="Button.transparent">
-    <Setter Property="Background" Value="Transparent"></Setter>
-    <Setter Property="Opacity" Value="10"></Setter>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Opacity" Value="10"/>
   </Style>
 
    <Style Selector="Button.secondary">
     <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"/>
 	<Setter Property="Foreground" Value="{DynamicResource SecondaryForeground}"/>
-   </Style>
-
-   <Style Selector="Button.primary">
-   	<Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
-   	<Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
    </Style>
 
 	<Style Selector="Button:pointerover /template/ContentPresenter">
