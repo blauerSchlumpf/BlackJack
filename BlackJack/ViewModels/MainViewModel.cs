@@ -17,14 +17,13 @@ namespace BlackJack.ViewModels
     {
         ChartViewModel chartViewModel;
         GameViewModel gameViewModel;
-
-        [ObservableProperty]
-        bool statsOpened;
+        ChartData chartData;
 
         [ObservableProperty]
         bool gameOver;
 
-        ChartData chartData;
+        [ObservableProperty]
+        bool statsOpened;
 
         [ObservableProperty]
         char statsCloseIcon;
@@ -34,13 +33,18 @@ namespace BlackJack.ViewModels
 
         public MainViewModel()
         {
-            StatsCloseIcon = (StatsOpened ? '\ue4f6' : '\ue154');
+            StatsCloseIcon = '\ue154';
             chartData = new ChartData();
             chartViewModel = new ChartViewModel(chartData);
             gameViewModel = new GameViewModel(chartData);
             CurrentPage = gameViewModel;
             gameViewModel.OnGameOver += OnGameOverHandler;
 
+        }
+
+        partial void OnStatsOpenedChanged(bool value)
+        {
+            StatsCloseIcon = value ? '\ue4f6' : '\ue154';
         }
 
         void OnGameOverHandler()
@@ -60,12 +64,13 @@ namespace BlackJack.ViewModels
             {
                 CurrentPage = gameViewModel;
             }
-            StatsCloseIcon = (StatsOpened ? '\ue4f6' : '\ue154');
         }
 
         [RelayCommand]
         void RestartGame()
         {
+            GameOver = false;
+            StatsOpened = false;
             chartData = new ChartData();
             chartViewModel = new ChartViewModel(chartData);
             gameViewModel = new GameViewModel(chartData);
