@@ -115,7 +115,7 @@ namespace BlackJack.ViewModels
             var result = gameMaster.Result;
             var window = new Views.MessageBoxWindow();
             window.DataContext = new MessageBoxViewModel(result, window, RestartGame);
-            window.ShowDialog(window);
+            window.Show();
         }
     }
 }

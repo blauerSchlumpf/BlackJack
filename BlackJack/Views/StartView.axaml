@@ -7,9 +7,6 @@
               xmlns:local="clr-namespace:BlackJack.Model;assembly=BlackJack"
              x:Class="BlackJack.Views.StartView">
 
-  <UserControl.DataContext>
-    <viewModel:StartViewModel/>
-  </UserControl.DataContext>
   <StackPanel VerticalAlignment="Center">
     <TextBlock Text="Welcome to BlackJack!" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     <TextBox Watermark="Enter Username" Text="{Binding Username}" MaxWidth="200" Margin="10"></TextBox>

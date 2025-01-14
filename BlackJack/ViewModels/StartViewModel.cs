@@ -17,6 +17,7 @@ namespace BlackJack.ViewModels;
 public partial class StartViewModel : ViewModelBase
 {
     public event Action<string>? OnStartGame;
+    public event Action? OnTest;
 
 
     [ObservableProperty]
@@ -42,7 +43,6 @@ public partial class StartViewModel : ViewModelBase
                 var jsonElement = item as JsonObject;
                 if(jsonElement != null)
                 {
-                    //LeaderboardData leaderboardData = JsonConvert.DeserializeObject<LeaderboardData>(jsonElement);
                     var data = JsonConvert.DeserializeObject<LeaderboardData>(jsonElement.ToString());
                     if (data != null)
                     {
@@ -66,8 +66,9 @@ public partial class StartViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    void StartGame()
+    public void StartGame()
     {
+        OnTest?.Invoke();
         OnStartGame?.Invoke(Username);
     }
 }

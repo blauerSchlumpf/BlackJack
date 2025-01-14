@@ -47,12 +47,19 @@ namespace BlackJack.ViewModels
             chartViewModel = new ChartViewModel(chartData);
             gameViewModel = new GameViewModel(chartData, result);
             startViewModel = new StartViewModel();
-            startViewModel.OnStartGame += OnStartGame;
-            gameViewModel.OnGameOver += OnGameOver;
+            startViewModel.OnStartGame += OnStartGameHandler;
+            gameViewModel.OnGameOver += OnGameOverHandler;
+            startViewModel.OnTest += OnTestHandler;
             CurrentPage = startViewModel;
+            //startViewModel.StartGame();
         }
 
-        void OnStartGame(string username)
+        void OnTestHandler()
+        {
+            CurrentPage = chartViewModel;
+        }
+
+        void OnStartGameHandler(string username)
         {
             Username = username;
             result.Username = Username;            
@@ -65,7 +72,7 @@ namespace BlackJack.ViewModels
             StatsCloseIcon = value ? '\ue4f6' : '\ue154';
         }
 
-        void OnGameOver()
+        void OnGameOverHandler()
         {
             GameOver = true;
         }
