@@ -17,8 +17,6 @@ namespace BlackJack.ViewModels;
 public partial class StartViewModel : ViewModelBase
 {
     public event Action<string>? OnStartGame;
-    public event Action? OnTest;
-
 
     [ObservableProperty]
     string username;
@@ -68,7 +66,6 @@ public partial class StartViewModel : ViewModelBase
     [RelayCommand]
     public void StartGame()
     {
-        OnTest?.Invoke();
         OnStartGame?.Invoke(Username);
     }
 }

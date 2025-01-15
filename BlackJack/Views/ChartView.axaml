@@ -7,14 +7,17 @@
 			 xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              x:Class="BlackJack.Views.ChartView"
 	         x:DataType="viewModel:ChartViewModel">
-	<Design.DataContext>
-		<viewModel:ChartViewModel />
-	</Design.DataContext>
-
-	<lvc:CartesianChart
-        Series="{Binding ChartData}"
+	<Grid RowDefinitions="*,Auto">
+		<lvc:CartesianChart Grid.Row="0"
+		Series="{Binding ChartData}"
 		AnimationsSpeed="00:00:01.00"
 		ZoomMode="Both">
-	</lvc:CartesianChart>
-
+		</lvc:CartesianChart>
+		<Grid Grid.Row="1" Background="{DynamicResource ScondaryBackground}" HorizontalAlignment="Center" Margin="10" ColumnDefinitions="auto">
+			<StackPanel>
+				<TextBlock Text="Leaderboard" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,0,0,10" />
+				<DataGrid ItemsSource="{Binding LeaderboardDatas}"  AutoGenerateColumns="True" IsReadOnly="True" GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray" />
+			</StackPanel>
+		</Grid>
+	</Grid>
 </UserControl>

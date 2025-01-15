@@ -1,15 +1,18 @@
-﻿using LiveChartsCore;
+﻿using BlackJack.Model;
+using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using Newtonsoft.Json;
 using SkiaSharp;
 using System.Collections.ObjectModel;
+using System.Text.Json.Nodes;
 
 namespace BlackJack.ViewModels;
 public class ChartViewModel : ViewModelBase
 {
     private readonly ChartData data;
-
     public ObservableCollection<ISeries> ChartData { get; }
+    public ObservableCollection<LeaderboardData> LeaderboardDatas { get; } = new ObservableCollection<LeaderboardData>();
 
     public ChartViewModel(ChartData dataProvider)
     {
@@ -39,5 +42,27 @@ public class ChartViewModel : ViewModelBase
                 Fill = new SolidColorPaint(SKColors.LimeGreen.WithAlpha(50))
             }
         };
+    }
+
+    public async void GetResults()
+    {
+        LeaderboardDatas.Clear();
+        JsonArray results = await ApiController.GetResults();
+
+        if (results != null)
+        {
+            foreach (var item in results)
+            {
+                var jsonElement = item as JsonObject;
+                if (jsonElement != null)
+                {
+                    var data = JsonConvert.DeserializeObject<LeaderboardData>(jsonElement.ToString());
+                    if (data != null)
+                    {
+                        LeaderboardDatas.Add(data);
+                    }
+                }
+            }
+        }
     }
 }

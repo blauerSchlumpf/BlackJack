@@ -49,9 +49,7 @@ namespace BlackJack.ViewModels
             startViewModel = new StartViewModel();
             startViewModel.OnStartGame += OnStartGameHandler;
             gameViewModel.OnGameOver += OnGameOverHandler;
-            startViewModel.OnTest += OnTestHandler;
             CurrentPage = startViewModel;
-            //startViewModel.StartGame();
         }
 
         void OnTestHandler()
@@ -84,6 +82,7 @@ namespace BlackJack.ViewModels
             if (StatsOpened)
             {
                 CurrentPage = chartViewModel;
+                chartViewModel.GetResults();
             }
             else
             {
