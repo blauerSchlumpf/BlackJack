@@ -17,11 +17,19 @@ class ApiController
 
     public static async Task<JsonArray> GetResults()
     {
-        JsonArray results = await client.GetFromJsonAsync<JsonArray>("https://blackjack-backend.holz-edv.de/leaderboard?limit=5");
-        if(results == null)
+        try
         {
-            throw new Exception("No results found");
+            JsonArray? results = await client.GetFromJsonAsync<JsonArray>("https://blackjack-backend.holz-edv.de/leaderboard?limit=5");
+            if (results == null)
+            {
+                throw new Exception("No results found");
+            }
+            return results;
         }
-        return results;
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Ein Fehler ist aufgetreten: {ex.Message}");
+        }
+        return null;
     }
 }
