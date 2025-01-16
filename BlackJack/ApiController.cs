@@ -15,7 +15,7 @@ class ApiController
         response.EnsureSuccessStatusCode();
     }
 
-    public static async Task<JsonArray> GetResults()
+    public static async Task<JsonArray?> GetResults()
     {
         try
         {
@@ -29,7 +29,7 @@ class ApiController
         catch (HttpRequestException ex)
         {
             Console.WriteLine($"Ein Fehler ist aufgetreten: {ex.Message}");
+            return null;
         }
-        return null;
     }
 }

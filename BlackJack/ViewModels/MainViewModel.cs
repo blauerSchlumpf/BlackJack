@@ -37,7 +37,7 @@ namespace BlackJack.ViewModels
         bool hasGameStarted;
 
         [ObservableProperty]
-        string username;
+        string? username;
 
         public MainViewModel()
         {
