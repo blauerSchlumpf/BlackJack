@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using System.Text.Json.Nodes;
 
 namespace BlackJack;
-class ApiController
+static class ApiController
 {
     static HttpClient client = new HttpClient();
+    static int maxStats = 5;
     public static async Task SendResult(Result result)
     {
         HttpResponseMessage response = await client.PostAsJsonAsync("https://blackjack-backend.holz-edv.de/log", result);
@@ -19,7 +20,7 @@ class ApiController
     {
         try
         {
-            JsonArray? results = await client.GetFromJsonAsync<JsonArray>("https://blackjack-backend.holz-edv.de/leaderboard?limit=5");
+            JsonArray? results = await client.GetFromJsonAsync<JsonArray>("https://blackjack-backend.holz-edv.de/leaderboard?limit=" + maxStats);
             if (results == null)
             {
                 throw new Exception("No results found");
