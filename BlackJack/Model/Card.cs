@@ -6,7 +6,6 @@ namespace BlackJack.Model
     {
         public char Suit { get; set; }
         List<char> suits = new List<char>() { '\ue1ec', '\ue2a8', '\ue448', '\ue1ba' };
-        // List<string> suits = new List<string>() { "Karo", "Herz", "Pik", "Kreuz" };
         List<string> Values = new List<string>() { "A", "B", "D", "K" };
 
 

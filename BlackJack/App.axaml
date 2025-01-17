@@ -26,11 +26,5 @@
 		<FontFamily x:Key="Phosphor">Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
 		<FontFamily x:Key="PhosphorFill">Assets/Fonts/Phosphor-Fill.ttf#Phosphor-Fill</FontFamily>
 		<FontFamily x:Key="PhosphorDuotone">Assets/Fonts/Phosphor-Duotone.ttf#Phosphor-Duotone</FontFamily>
-
-
-		<!--<BoolConverters.And x:Key="AndConverter" />
-		<BoolConverters.Or x:Key="OrConverter" />
-		<BoolConverters.Not x:Key="NotConverter" />-->
-		<!--<BoolConverters.And x:Key="AndConverter" />-->
 	</Application.Resources>
 </Application>

@@ -9,7 +9,7 @@ namespace BlackJack;
 static class ApiController
 {
     static HttpClient client = new HttpClient();
-    static int maxStats = 5;
+    static readonly int maxStats = 5;
     public static async Task SendResult(Result result)
     {
         HttpResponseMessage response = await client.PostAsJsonAsync("https://blackjack-backend.holz-edv.de/log", result);

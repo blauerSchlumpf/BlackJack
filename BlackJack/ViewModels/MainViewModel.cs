@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using BlackJack.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
-using BlackJack.Model;
 using CommunityToolkit.Mvvm.Input;
-using Avalonia.Controls.ApplicationLifetimes;
-using System.Diagnostics;
 
 namespace BlackJack.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        ChartViewModel? chartViewModel;
-        GameViewModel? gameViewModel;
-        StartViewModel? startViewModel;
-        ChartData? chartData;
-        Result? result;
+        ChartViewModel chartViewModel;
+        GameViewModel gameViewModel;
+        StartViewModel startViewModel;
+        ChartData chartData;
+        Result result;
 
         [ObservableProperty]
         bool gameOver;
@@ -51,12 +42,6 @@ namespace BlackJack.ViewModels
             gameViewModel.OnGameOver += OnGameOverHandler;
             CurrentPage = startViewModel;
         }
-
-        void OnTestHandler()
-        {
-            CurrentPage = chartViewModel;
-        }
-
         void OnStartGameHandler(string username)
         {
             Username = username;

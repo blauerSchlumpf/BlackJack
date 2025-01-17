@@ -47,7 +47,7 @@ public class ChartViewModel : ViewModelBase
     public async void GetResults()
     {
         LeaderboardDatas.Clear();
-        JsonArray results = await ApiController.GetResults();
+        JsonArray? results = await ApiController.GetResults();
 
         if (results != null)
         {

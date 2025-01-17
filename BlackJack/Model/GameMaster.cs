@@ -30,7 +30,7 @@ class GameMaster : ObservableObject
         this.result = result;
         this.chartData = chartData;
         initialBudget = playerBudget;
-        winIndicator = 5.0; // Default value, will be overwritten, no winner yet
+        winIndicator = 5.0;
         cardSheet = new CardSheet();
         player = new Player();
         player.Budget = initialBudget;
@@ -42,7 +42,6 @@ class GameMaster : ObservableObject
     {
         player.Bet = bet;
         player.Budget -= player.Bet;
-        StartGame();
     }
 
     public void StartGame()

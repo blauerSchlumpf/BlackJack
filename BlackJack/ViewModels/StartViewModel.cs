@@ -1,17 +1,10 @@
-﻿using Avalonia.Controls.Converters;
+﻿using BlackJack.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
+using System;
 using System.Collections.ObjectModel;
 using System.Text.Json.Nodes;
-using System.Text.Json;
-using BlackJack.Model;
-using Newtonsoft.Json;
-using Avalonia.Controls;
 
 namespace BlackJack.ViewModels;
 public partial class StartViewModel : ViewModelBase
@@ -19,7 +12,7 @@ public partial class StartViewModel : ViewModelBase
     public event Action<string>? OnStartGame;
 
     [ObservableProperty]
-    string username;
+    string username = string.Empty;
 
     [ObservableProperty]
     bool isUsernameValid;
@@ -32,7 +25,7 @@ public partial class StartViewModel : ViewModelBase
 
     async void GetResults()
     {
-        JsonArray results = await ApiController.GetResults();
+        JsonArray? results = await ApiController.GetResults();
 
         if(results != null)
         {
@@ -69,4 +62,3 @@ public partial class StartViewModel : ViewModelBase
         OnStartGame?.Invoke(Username);
     }
 }
-

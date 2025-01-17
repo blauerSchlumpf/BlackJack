@@ -13,9 +13,6 @@ namespace BlackJack.Model
             get => points;
             set => SetProperty(ref points, value);
         }
-        public Dealer()
-        {
-        }
 
         public bool Hit(Card card)
         {

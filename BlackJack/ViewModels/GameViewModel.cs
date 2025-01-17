@@ -19,7 +19,7 @@ namespace BlackJack.ViewModels
         [ObservableProperty]
         bool isBetValid;
         Result result;
-        private string _betInputText;
+        private string _betInputText = string.Empty;
         public string BetInputText
         {
             get => _betInputText;
@@ -35,12 +35,13 @@ namespace BlackJack.ViewModels
                 }
             }
         }
-        public GameMaster gameMaster { get; set; }
+        
         ChartData chartData;
         [ObservableProperty]
-        Dealer? dealer;
+        Dealer dealer;
         [ObservableProperty]
-        Player? player;
+        Player player;
+        public GameMaster gameMaster { get; set; }
 
         public GameViewModel(ChartData chartData, Result result)
         {
@@ -52,7 +53,6 @@ namespace BlackJack.ViewModels
             BudgetVisibility = true;
             gameMaster.OnPlayerLost += DealersTurnCommand;
             gameMaster.DealerDone += ShowResult;
-            //BetTextBox.Focus();
         }
 
         public void RestartGame()
@@ -93,13 +93,21 @@ namespace BlackJack.ViewModels
             gameMaster.DealerMakeMove();
         }
 
-
         [RelayCommand]
         public void SetBudget()
         {
             gameMaster.SetBet(BetSliderValue);
             BudgetVisibility = false;
             ButtonEnabled = true;
+            gameMaster.StartGame();
+        }
+
+        [RelayCommand]
+        public void AddBudget(string _budget)
+        {
+            int budget = Convert.ToInt32(Player.Budget * double.Parse(_budget));
+
+            BetInputText = budget.ToString();
         }
 
         [RelayCommand]
@@ -108,6 +116,7 @@ namespace BlackJack.ViewModels
             gameMaster.SetBet(Player.Budget);
             BudgetVisibility = false;
             ButtonEnabled = true;
+            gameMaster.StartGame();
         }
 
         public void ShowResult()
