@@ -42,6 +42,7 @@ namespace BlackJack.ViewModels
             gameViewModel.OnGameOver += OnGameOverHandler;
             CurrentPage = startViewModel;
         }
+
         void OnStartGameHandler(string username)
         {
             Username = username;
@@ -84,6 +85,9 @@ namespace BlackJack.ViewModels
             chartViewModel = new ChartViewModel(chartData);
             gameViewModel = new GameViewModel(chartData, result);
             CurrentPage = gameViewModel;
+            startViewModel.OnStartGame += OnStartGameHandler;
+            gameViewModel.OnGameOver += OnGameOverHandler;
+
         }
     }
 }

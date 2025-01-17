@@ -13,7 +13,7 @@ namespace BlackJack.ViewModels
         [ObservableProperty]
         bool buttonEnabled;
         [ObservableProperty]
-        bool gameOver;
+        bool gameOver = false;
         [ObservableProperty]
         int betSliderValue;
         [ObservableProperty]
